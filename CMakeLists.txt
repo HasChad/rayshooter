@@ -1,13 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(rayshooter)
-set(CMAKE_C_STANDARD 11) # Requires C11 standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-find_package(raylib 4.2 REQUIRED) # Requires at least version 3.0
+find_package(raylib 5.5 REQUIRED)
 
-add_executable(${PROJECT_NAME} rayshooter.c)
-
+add_executable(${PROJECT_NAME} src/main.cpp)
 target_link_libraries(${PROJECT_NAME} raylib)
-
-#add assets
-target_compile_definitions(${PROJECT_NAME} PUBLIC SOUND_PATH="${CMAKE_CURRENT_SOURCE_DIR}/sound/") 
-target_compile_definitions(${PROJECT_NAME} PUBLIC SPRITE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/sprite/")
