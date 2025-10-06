@@ -45,12 +45,13 @@ void Player::shooting() {
 }
 
 void Player::draw() {
-    int flip = player.lookLeft ? -1 : 1;
+    int flip = lookLeft ? -1 : 1;
+
     DrawTextureRec(
         textures.player,
         (Rectangle){ 0, 0, (float)textures.player.width * flip, (float)textures.player.height },
-        { static_cast<float>(player.pos.x - textures.player.width / 2.0),
-          static_cast<float>(player.pos.y - textures.player.height / 2.0) },
+        { static_cast<float>(pos.x - textures.player.width / 2.0),
+          static_cast<float>(pos.y - textures.player.height / 2.0) },
         WHITE
     );
 }

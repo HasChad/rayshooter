@@ -16,3 +16,5 @@ struct Sounds {
     Sound gunshot;
 };
 inline Sounds sounds;
+
+void loadAssets();

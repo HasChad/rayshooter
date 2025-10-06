@@ -1,8 +1,9 @@
 #include "assets.h"
-#include "camera.h"
-#include "draw.h"
+#include "gameplay/gameplay.h"
 #include "globals.h"
-#include "player.h"
+#include "main_menu/main_menu.h"
+#include "pause/pause.h"
+#include "raygui.h"
 
 #include <raylib.h>
 #include <raymath.h>
@@ -12,48 +13,58 @@ int main() {
     InitAudioDevice();
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));
-    HideCursor();
+    // HideCursor();
 
-    GameScreen currentScreen = GAMEPLAY;
-    textures.player = LoadTexture("sprites/player.png");
-    textures.bullet = LoadTexture("sprites/bullet.png");
-    textures.cursor = LoadTexture("sprites/cursor.png");
-    textures.bg = LoadTexture("sprites/beton.png");
+    loadAssets();
 
-    sounds.wood_ambiance = LoadMusicStream("sounds/wood_ambiance.mp3");
-    sounds.walk_forest = LoadMusicStream("sounds/walk_forest.mp3");
-    sounds.gunshot = LoadSound("sounds/gunshot.mp3");
     SetMasterVolume(0.3);
     PlayMusicStream(sounds.wood_ambiance);
     PlayMusicStream(sounds.walk_forest);
 
-    // Main game loop
-    while (!WindowShouldClose()) // Detect window close button or ESC key
-    {
-        UpdateMusicStream(sounds.wood_ambiance);
-        cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera);
-        player.lookLeft = cursorPos.x < player.pos.x ? true : false;
+    while (!mainMenu.quit) {
+        mainMenu.quit = WindowShouldClose();
+        if (IsKeyPressed(KEY_TAB)) {
+            switch (gameState) {
+            case MAINMENU:
+                break;
+            case GAMEPLAY:
+                gameState = PAUSE;
+                break;
+            case PAUSE:
+                gameState = GAMEPLAY;
+            }
+        }
 
-        player.movementInput();
-        player.playerMove();
-        player.shooting();
+        switch (gameState) {
+        case MAINMENU:
+            break;
 
-        gameCamera.update();
-        gameCamera.handleAim();
-        gameCamera.handleZoom();
+        case GAMEPLAY:
+            gameplay.run();
+            break;
+
+        case PAUSE:
+            break;
+        }
 
         // Draw
         BeginDrawing();
         ClearBackground(BLACK);
 
-        BeginMode2D(gameCamera);
+        switch (gameState) {
+        case MAINMENU:
+            mainMenu.ui();
+            break;
 
-        drawGame();
+        case GAMEPLAY:
+            gameplay.draw();
+            break;
 
-        EndMode2D();
-
-        DrawText(TextFormat("Health: %.0f", player.health), 5, screen.height - 20, 20, ORANGE);
-        DrawText(TextFormat("Ammo: "), screen.width - 80, screen.height - 20, 20, ORANGE);
+        case PAUSE:
+            gameplay.draw();
+            pause.ui();
+            break;
+        }
 
         EndDrawing();
     }

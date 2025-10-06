@@ -1,24 +1,22 @@
 #pragma once
 
-#include <iostream>
 #include <raylib.h>
 #include <raymath.h>
 #include <vector>
 
 const float BULLET_SPEED = 20.0f;
 
-typedef enum GameScreen { GAMEPLAY, INVENTORY, PAUSE } GameScreen;
+typedef enum GameState { MAINMENU, GAMEPLAY, PAUSE } GameState;
+inline GameState gameState = MAINMENU;
 
 struct Screen {
     int width;
     int height;
 };
-
 constexpr Screen screen = {
     .width = 800,
     .height = 450,
 };
-constexpr Rectangle screenRec = { 0, 0, screen.width, screen.height };
 
 struct Bullet {
     Vector2 pos;
@@ -29,4 +27,13 @@ struct Bullet {
 inline std::vector<Bullet> bullets;
 
 inline Vector2 cursorPos;
-inline int terrain[10][10];
+
+constexpr int ROWS = 10;
+constexpr int COLS = 10;
+inline int terrain[ROWS][COLS] = {
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+};
