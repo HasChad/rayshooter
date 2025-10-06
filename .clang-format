@@ -1,9 +1,8 @@
----
 BasedOnStyle: LLVM
 IndentWidth: 4
----
-Language: Cpp
-# Force pointers to the type for C++.
-DerivePointerAlignment: false
+ColumnLimit: 100
 PointerAlignment: Left
----
+Cpp11BracedListStyle: false
+AlignAfterOpenBracket: BlockIndent
+BinPackArguments: false
+PackConstructorInitializers: Never
