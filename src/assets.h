@@ -6,9 +6,13 @@ struct Textures {
     Texture2D player;
     Texture2D bullet;
     Texture2D cursor;
-    Texture bg;
 };
 inline Textures textures;
+
+struct TerrainTextures {
+    Texture2D ground;
+};
+inline TerrainTextures terraTex;
 
 struct Sounds {
     Music wood_ambiance;

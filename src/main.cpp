@@ -13,7 +13,6 @@ int main() {
     InitAudioDevice();
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));
-    // HideCursor();
 
     loadAssets();
 
@@ -29,9 +28,11 @@ int main() {
                 break;
             case GAMEPLAY:
                 gameState = PAUSE;
+                ShowCursor();
                 break;
             case PAUSE:
                 gameState = GAMEPLAY;
+                HideCursor();
             }
         }
 

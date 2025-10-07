@@ -1,6 +1,5 @@
 #pragma once
 
-#include "globals.h"
 #include <raylib.h>
 #include <raymath.h>
 
@@ -23,7 +22,7 @@ struct Player {
 inline Player player = {
     .health = 100,
     .vel = Vector2Zero(),
-    .pos = { screen.width / 2.0, screen.height / 2.0 },
+    .pos = { 0, 0 },
     .rec = { 20, 20 },
     .lookLeft = false,
 };

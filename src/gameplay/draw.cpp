@@ -36,10 +36,10 @@ void drawTerrain() {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             Vector2 texPos = (Vector2){
-                static_cast<float>(j * textures.bg.width),
-                static_cast<float>(i * textures.bg.height),
+                static_cast<float>(j * terraTex.ground.width),
+                static_cast<float>(i * terraTex.ground.height),
             };
-            DrawTextureEx(textures.bg, texPos, 0, 1, WHITE);
+            DrawTextureEx(terraTex.ground, texPos, 0, 1, WHITE);
         }
     }
 }

@@ -13,8 +13,10 @@ void MainMenu::ui() {
         boxSize.y,
     };
 
-    // Draw the panel
-    GuiPanel(boxRec, "#191#Message Box");
+    // GuiWindowBox(boxRec, "window box");
+    // GuiGroupBox(boxRec, "group box");
+    GuiPanel(boxRec, "");
+    // GuiLine(boxRec, "line");
 
     // Draw text
     DrawText("RayShooter", boxRec.x + 65, boxRec.y + 40, 20, BLACK);
@@ -25,9 +27,10 @@ void MainMenu::ui() {
 
     if (GuiButton(playButton, "Play")) {
         gameState = GAMEPLAY;
+        HideCursor();
     }
 
     if (GuiButton(quitButton, "Quit")) {
-        this->quit = true;
+        quit = true;
     }
 }
