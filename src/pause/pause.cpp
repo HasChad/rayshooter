@@ -7,8 +7,8 @@
 void Pause::ui() {
     Vector2 boxSize = { 250, 150 };
     Rectangle boxRec{
-        static_cast<float>(screen.width / 2.0 - boxSize.x / 2.0),
-        static_cast<float>(screen.height / 2.0 - boxSize.y / 2.0),
+        static_cast<float>(GetScreenWidth() / 2.0 - boxSize.x / 2.0),
+        static_cast<float>(GetScreenHeight() / 2.0 - boxSize.y / 2.0),
         boxSize.x,
         boxSize.y,
     };

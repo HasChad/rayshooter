@@ -9,7 +9,8 @@
 #include <raymath.h>
 
 int main() {
-    InitWindow(screen.width, screen.height, "RayShooter");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(800, 450, "RayShooter");
     InitAudioDevice();
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));

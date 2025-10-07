@@ -9,15 +9,6 @@ const float BULLET_SPEED = 20.0f;
 typedef enum GameState { MAINMENU, GAMEPLAY, PAUSE } GameState;
 inline GameState gameState = MAINMENU;
 
-struct Screen {
-    int width;
-    int height;
-};
-constexpr Screen screen = {
-    .width = 800,
-    .height = 450,
-};
-
 struct Bullet {
     Vector2 pos;
     Vector2 vel;
