@@ -1,6 +1,6 @@
-#include "pause.h"
-#include "globals.h"
-#include "main_menu/main_menu.h"
+#include "pause.hpp"
+#include "globals.hpp"
+#include "main_menu/main_menu.hpp"
 #include "raygui.h"
 #include "raylib.h"
 

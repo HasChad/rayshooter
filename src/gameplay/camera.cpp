@@ -1,5 +1,5 @@
-#include "camera.h"
-#include "player.h"
+#include "camera.hpp"
+#include "player.hpp"
 #include "raylib.h"
 
 void GameCamera::update() {

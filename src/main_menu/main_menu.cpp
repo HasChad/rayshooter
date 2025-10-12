@@ -1,5 +1,5 @@
-#include "main_menu.h"
-#include "globals.h"
+#include "main_menu.hpp"
+#include "globals.hpp"
 #include "raylib.h"
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"

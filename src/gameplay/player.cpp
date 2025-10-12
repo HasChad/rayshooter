@@ -1,6 +1,6 @@
-#include "player.h"
-#include "assets.h"
-#include "globals.h"
+#include "player.hpp"
+#include "assets.hpp"
+#include "globals.hpp"
 #include <raylib.h>
 #include <raymath.h>
 

@@ -1,8 +1,8 @@
-#include "assets.h"
-#include "gameplay/gameplay.h"
-#include "globals.h"
-#include "main_menu/main_menu.h"
-#include "pause/pause.h"
+#include "assets.hpp"
+#include "gameplay/gameplay.hpp"
+#include "globals.hpp"
+#include "main_menu/main_menu.hpp"
+#include "pause/pause.hpp"
 #include "raygui.h"
 
 #include <raylib.h>

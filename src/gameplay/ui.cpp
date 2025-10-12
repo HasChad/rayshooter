@@ -1,5 +1,5 @@
-#include "gameplay/ui.h"
-#include "gameplay/player.h"
+#include "gameplay/ui.hpp"
+#include "gameplay/player.hpp"
 #include "raylib.h"
 
 void ui() {

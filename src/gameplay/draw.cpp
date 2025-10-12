@@ -1,7 +1,7 @@
-#include "draw.h"
-#include "assets.h"
-#include "globals.h"
-#include "player.h"
+#include "draw.hpp"
+#include "assets.hpp"
+#include "globals.hpp"
+#include "player.hpp"
 #include "raylib.h"
 #include <cmath>
 

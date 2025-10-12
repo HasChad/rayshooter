@@ -1,10 +1,10 @@
-#include "gameplay/gameplay.h"
-#include "assets.h"
-#include "camera.h"
-#include "draw.h"
-#include "gameplay/ui.h"
-#include "globals.h"
-#include "player.h"
+#include "gameplay/gameplay.hpp"
+#include "assets.hpp"
+#include "camera.hpp"
+#include "draw.hpp"
+#include "gameplay/ui.hpp"
+#include "globals.hpp"
+#include "player.hpp"
 #include "raymath.h"
 #include <raylib.h>
 

@@ -1,4 +1,4 @@
-#include "assets.h"
+#include "assets.hpp"
 
 void loadAssets() {
     textures.player = LoadTexture("sprites/player.png");
