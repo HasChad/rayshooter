@@ -1,0 +1,11 @@
+TODO
+- add zombies
+- add inventory ui
+- add weapon
+
+FEATURES
+- run/walk
+- right click aim
+- basic terrain grid
+- main menu, pause menu
+- smooth camera

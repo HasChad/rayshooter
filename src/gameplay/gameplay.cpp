@@ -12,7 +12,7 @@ void Gameplay::run() {
     UpdateMusicStream(sounds.wood_ambiance);
     cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera);
 
-    /* Maybe i will use this if i cant find better solution
+    /* Maybe i will use this locking cursor if i cant find better solution
     if (GetMousePosition().x < 0)
         SetMousePosition(0, GetMousePosition().y);
     if (GetMousePosition().x > screen.width)

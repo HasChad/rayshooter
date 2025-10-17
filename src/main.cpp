@@ -15,6 +15,8 @@ int main() {
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));
 
+    SetExitKey(0);
+
     loadAssets();
 
     SetMasterVolume(0.3);
@@ -22,8 +24,10 @@ int main() {
     PlayMusicStream(sounds.walk_forest);
 
     while (!mainMenu.quit) {
+
         mainMenu.quit = WindowShouldClose();
-        if (IsKeyPressed(KEY_TAB)) {
+
+        if (IsKeyPressed(KEY_ESCAPE)) {
             switch (gameState) {
             case MAINMENU:
                 break;
