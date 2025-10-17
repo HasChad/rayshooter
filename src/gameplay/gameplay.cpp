@@ -2,6 +2,7 @@
 #include "assets.hpp"
 #include "camera.hpp"
 #include "draw.hpp"
+#include "gameplay/inventory/inventory.hpp"
 #include "gameplay/ui.hpp"
 #include "globals.hpp"
 #include "player.hpp"
@@ -42,5 +43,6 @@ void Gameplay::draw() {
     BeginMode2D(gameCamera);
     drawGame();
     EndMode2D();
+    inventory.draw();
     ui();
 }
