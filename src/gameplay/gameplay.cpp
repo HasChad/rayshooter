@@ -30,19 +30,36 @@ void Gameplay::run() {
 
     player.lookLeft = cursorPos.x < player.pos.x ? true : false;
 
+    if (IsKeyPressed(KEY_TAB)) {
+        if (inventory.enable) {
+            inventory.enable = false;
+            HideCursor();
+        } else {
+            inventory.enable = true;
+            ShowCursor();
+        }
+    }
+
     player.movementInput();
     player.playerMove();
-    player.shooting();
-
     gameCamera.update();
-    gameCamera.handleAim();
-    gameCamera.handleZoom();
+
+    if (inventory.enable) {
+        Vector2 screenSize = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
+        gameCamera.targetOffset = screenSize;
+    } else {
+        gameCamera.handleAim();
+        gameCamera.handleZoom();
+        player.shooting();
+    }
 }
 
 void Gameplay::draw() {
     BeginMode2D(gameCamera);
     drawGame();
     EndMode2D();
-    inventory.draw();
+    if (inventory.enable) {
+        inventory.draw();
+    }
     ui();
 }

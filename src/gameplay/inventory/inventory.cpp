@@ -1,5 +1,7 @@
 #include "gameplay/inventory/inventory.hpp"
 #include "raygui.h"
+#include "raylib.h"
+#include <cstddef>
 
 void Inventory::draw() {
     Vector2 boxSize = { INV_WIDTH, INV_HEIGHT };
@@ -10,9 +12,9 @@ void Inventory::draw() {
         boxSize.y,
     };
 
+    GuiPanel(boxRec, NULL);
     // GuiWindowBox(boxRec, "window box");
-    // GuiGroupBox(boxRec, "group box");
-    GuiPanel(boxRec, "");
+    // GuiGroupBox(boxRec, "");
     // GuiLine(boxRec, "line");
 
     // Draw text

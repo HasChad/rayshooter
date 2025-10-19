@@ -2,21 +2,26 @@
 
 #include <raylib.h>
 
-const float INV_WIDTH = 300.0;
+const float INV_WIDTH = 400.0;
 const float INV_HEIGHT = 300.0;
 
+enum PrimaryWeapon { NoPrimary, Ak47, MosinNagant };
+enum SecondaryWeapon { NoSecondary, Colt, Glock };
+enum MeleeWeapon { NoMelee, Knife, BaseballBat };
+
 struct Inventory {
-    int slots;
-    int primary;
-    int secondary;
-    int melee;
+    bool enable;
+
+    PrimaryWeapon primary;
+    SecondaryWeapon secondary;
+    MeleeWeapon melee;
 
     void draw();
 };
 
 inline Inventory inventory = {
-    .slots = 1,
-    .primary = 1,
-    .secondary = 1,
-    .melee = 1,
+    .enable = false,
+    .primary = NoPrimary,
+    .secondary = NoSecondary,
+    .melee = NoMelee,
 };
