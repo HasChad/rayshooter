@@ -1,10 +1,9 @@
 #include "draw.hpp"
 #include "assets.hpp"
-#include "gameplay/inventory/inventory.hpp"
+#include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include "player.hpp"
 #include "raylib.h"
-#include <cmath>
 
 void drawGame() {
     drawTerrain();
@@ -25,14 +24,12 @@ void drawGame() {
         );
     }
 
-    if (!inventory.enable) {
-        DrawTexture(
-            textures.cursor,
-            cursorPos.x - textures.cursor.width / 2.0,
-            cursorPos.y - textures.cursor.width / 2.0,
-            WHITE
-        );
-    }
+    DrawTexture(
+        textures.cursor,
+        cursorPos.x - textures.cursor.width / 2.0,
+        cursorPos.y - textures.cursor.width / 2.0,
+        WHITE
+    );
 }
 
 void drawTerrain() {

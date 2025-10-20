@@ -1,6 +1,5 @@
 TODO
 - add zombies
-- add inventory ui
 - add weapon
 
 FEATURES

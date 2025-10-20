@@ -1,5 +1,7 @@
 #include "player.hpp"
 #include "assets.hpp"
+#include "gameplay/inventory/inventory.hpp"
+#include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include <raylib.h>
 #include <raymath.h>
@@ -21,30 +23,20 @@ void Player::playerMove() {
     pos += vel;
 }
 
-void Player::shooting() {
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
-        PlaySound(sounds.gunshot);
-
-        Vector2 bulletVel = cursorPos - pos;
-        bulletVel = Vector2Normalize(bulletVel);
-        int move = lookLeft ? -10 : 10;
-        Vector2 bulletPos = { pos.x + move, pos.y - 4 };
-
-        bullets.push_back({ bulletPos, bulletVel, 3.0 });
+void Player::handleWeapon() {
+    if ((!inventory.currentWeapon->isAuto && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ||
+        (inventory.currentWeapon->isAuto && IsMouseButtonDown(MOUSE_BUTTON_LEFT))) {
+        weaponShooting();
     }
 
-    for (auto& bullet : bullets) {
-        bullet.pos += bullet.vel * BULLET_SPEED;
-        bullet.lifeTime -= GetFrameTime();
-    }
-
-    for (int i = bullets.size() - 1; i >= 0; i--) {
-        if (bullets[i].lifeTime < 0)
-            bullets.erase(bullets.begin() + i);
+    if (IsKeyPressed(KEY_R)) {
+        weaponReloading();
     }
 }
 
 void Player::draw() {
+    player.lookLeft = cursorPos.x < player.pos.x ? true : false;
+
     int flip = lookLeft ? -1 : 1;
 
     DrawTextureRec(

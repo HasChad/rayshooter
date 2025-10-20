@@ -15,7 +15,7 @@ struct Player {
 
     void movementInput();
     void playerMove();
-    void shooting();
+    void handleWeapon();
     void draw();
 };
 

@@ -4,6 +4,7 @@
 #include "draw.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/ui.hpp"
+#include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include "player.hpp"
 #include "raymath.h"
@@ -28,38 +29,37 @@ void Gameplay::run() {
         player.pos = Vector2Zero();
     }
 
-    player.lookLeft = cursorPos.x < player.pos.x ? true : false;
-
-    if (IsKeyPressed(KEY_TAB)) {
-        if (inventory.enable) {
-            inventory.enable = false;
-            HideCursor();
-        } else {
-            inventory.enable = true;
-            ShowCursor();
-        }
+    if (IsKeyPressed(KEY_X)) {
+        inventory.primary.weapon = PrimaryWeapon::Ak47;
+        inventory.primary.prop = WeaponProp{
+            .magCount = 30,
+            .ammoCount = 120,
+            .magCapacity = 30,
+            .ammoCapacity = 120,
+            .firerate = 0.3,
+            .isAuto = true,
+        };
+        // inventory.selected = 1;
+        // inventory.currentWeapon = &inventory.primary.prop;
     }
+
+    bulletController();
 
     player.movementInput();
     player.playerMove();
-    gameCamera.update();
+    player.handleWeapon();
 
-    if (inventory.enable) {
-        Vector2 screenSize = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
-        gameCamera.targetOffset = screenSize;
-    } else {
-        gameCamera.handleAim();
-        gameCamera.handleZoom();
-        player.shooting();
-    }
+    inventory.changeInv();
+
+    gameCamera.update();
+    gameCamera.handleAim();
+    gameCamera.handleZoom();
 }
 
 void Gameplay::draw() {
     BeginMode2D(gameCamera);
     drawGame();
     EndMode2D();
-    if (inventory.enable) {
-        inventory.draw();
-    }
+    inventory.draw();
     ui();
 }

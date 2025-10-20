@@ -24,7 +24,6 @@ int main() {
     PlayMusicStream(sounds.walk_forest);
 
     while (!mainMenu.quit) {
-
         mainMenu.quit = WindowShouldClose();
 
         if (IsKeyPressed(KEY_ESCAPE)) {
