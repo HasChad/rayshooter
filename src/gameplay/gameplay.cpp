@@ -42,7 +42,7 @@ void Gameplay::run() {
                     .firerate = 0.12,
                     .fireTimer = 0.0,
                     .reloadSpeed = 2.0,
-                    .reloadTimer = 2.0,
+                    .reloadTimer = 0.0,
                 },
         };
         // inventory.selected = 1;

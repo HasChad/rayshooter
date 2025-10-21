@@ -40,10 +40,12 @@ void weaponReloading() {
 void weaponTimerController() {
     if (player.action == Shooting) {
         if (inventory.currentWeapon->fireTimer <= 0) {
-            weaponShooting();
             inventory.currentWeapon->fireTimer = inventory.currentWeapon->firerate;
+            weaponShooting();
+
         } else {
             inventory.currentWeapon->fireTimer -= GetFrameTime();
+
             if (inventory.currentWeapon->fireTimer <= 0) {
                 player.action = Ready;
             }
@@ -51,12 +53,16 @@ void weaponTimerController() {
     }
 
     if (player.action == Reloading) {
-        if (inventory.currentWeapon->reloadTimer > 0) {
-            inventory.currentWeapon->reloadTimer -= GetFrameTime();
-        } else {
-            weaponReloading();
+        if (inventory.currentWeapon->reloadTimer <= 0) {
             inventory.currentWeapon->reloadTimer = inventory.currentWeapon->reloadSpeed;
-            player.action = Ready;
+
+        } else {
+            inventory.currentWeapon->reloadTimer -= GetFrameTime();
+
+            if (inventory.currentWeapon->reloadTimer <= 0) {
+                weaponReloading();
+                player.action = Ready;
+            }
         }
     }
 }

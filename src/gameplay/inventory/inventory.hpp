@@ -81,7 +81,7 @@ inline Inventory inventory = {
                     .firerate = 0.3,
                     .fireTimer = 0.0,
                     .reloadSpeed = 1.5,
-                    .reloadTimer = 1.5,
+                    .reloadTimer = 0.0,
                 },
         },
 
@@ -98,7 +98,7 @@ inline Inventory inventory = {
                     .firerate = 1,
                     .fireTimer = 0,
                     .reloadSpeed = 1,
-                    .reloadTimer = 1,
+                    .reloadTimer = 0,
                 },
         },
 
