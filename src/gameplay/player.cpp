@@ -23,9 +23,10 @@ void Player::playerMove() {
 }
 
 bool canShoot() {
-    return ((!inventory.currentWeapon->isAuto && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ||
-            (inventory.currentWeapon->isAuto && IsMouseButtonDown(MOUSE_BUTTON_LEFT))) &&
-           inventory.currentWeapon->fireTimer <= 0;
+    return (
+        (!inventory.currentWeapon->isAuto && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ||
+        (inventory.currentWeapon->isAuto && IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+    );
 }
 
 bool canReload() {

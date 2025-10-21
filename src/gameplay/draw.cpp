@@ -5,7 +5,6 @@
 #include "globals.hpp"
 #include "player.hpp"
 #include "raylib.h"
-#include <cstdio>
 
 void drawGame() {
     drawTerrain();

@@ -1,2 +1,3 @@
 # rayshooter
-Very basic and unfinished shooter game test made with Raylib using C++
+
+Top-down shooter game made with Raylib using C++

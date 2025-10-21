@@ -6,16 +6,15 @@
 
 void Inventory::changeInv() {
     if (player.action == Ready) {
-        if (IsKeyPressed(KEY_ONE) && inventory.primary.weapon != PrimaryWeapon::NoPrimary) {
-            inventory.selected = 1;
-            inventory.currentWeapon = &inventory.primary.prop;
-        } else if (IsKeyPressed(KEY_TWO) &&
-                   inventory.secondary.weapon != SecondaryWeapon::NoSecondary) {
-            inventory.selected = 2;
-            inventory.currentWeapon = &inventory.secondary.prop;
+        if (IsKeyPressed(KEY_ONE) && primary.weapon != PrimaryWeapon::NoPrimary) {
+            selected = 1;
+            currentWeapon = &primary.prop;
+        } else if (IsKeyPressed(KEY_TWO) && secondary.weapon != SecondaryWeapon::NoSecondary) {
+            selected = 2;
+            currentWeapon = &secondary.prop;
         } else if (IsKeyPressed(KEY_THREE)) {
-            inventory.selected = 3;
-            inventory.currentWeapon = &inventory.melee.prop;
+            selected = 3;
+            currentWeapon = &melee.prop;
         }
     }
 }
@@ -39,14 +38,14 @@ void Inventory::useMedKit() {
 
 void Inventory::draw() {
     DrawRectangleGradientH(0, 0, 30, 3 * 48, DARKGRAY, ColorAlpha(WHITE, 0.0));
-    DrawRectangleGradientH(0, (inventory.selected - 1) * 48, 100, 48, GRAY, ColorAlpha(WHITE, 0.0));
+    DrawRectangleGradientH(0, (inventory.selected - 1) * 48, 70, 48, GRAY, ColorAlpha(WHITE, 0.0));
     DrawRectangle(0, (inventory.selected - 1) * 48, 5, 48, WHITE);
 
     drawWeapons();
 }
 
 void drawWeapons() {
-    int paddingX = 20;
+    int paddingX = 10;
 
     // primary
     switch (inventory.primary.weapon) {
@@ -56,7 +55,7 @@ void drawWeapons() {
         DrawTexture(textures.ak47, paddingX, 0, WHITE);
         break;
     case MosinNagant:
-        DrawTexture(textures.ak47, paddingX, 0, WHITE);
+        DrawTexture(textures.mosin, paddingX, 0, WHITE);
         break;
     }
 
@@ -68,7 +67,7 @@ void drawWeapons() {
         DrawTexture(textures.glock, paddingX, 1 * 48, WHITE);
         break;
     case Fnx:
-        DrawTexture(textures.glock, paddingX, 1 * 48, WHITE);
+        DrawTexture(textures.fnx, paddingX, 1 * 48, WHITE);
         break;
     }
 
@@ -81,7 +80,7 @@ void drawWeapons() {
         DrawTexture(textures.knife, paddingX, 2 * 48, WHITE);
         break;
     case BaseballBat:
-        DrawTexture(textures.knife, paddingX, 2 * 48, WHITE);
+        DrawTexture(textures.baseballbat, paddingX, 2 * 48, WHITE);
         break;
     }
 }

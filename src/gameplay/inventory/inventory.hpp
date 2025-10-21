@@ -87,7 +87,7 @@ inline Inventory inventory = {
 
     .melee =
         Melee{
-            .weapon = Hand,
+            .weapon = Knife,
             .prop =
                 WeaponProp{
                     .magCount = 1,

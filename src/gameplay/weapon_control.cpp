@@ -5,12 +5,14 @@
 #include "globals.hpp"
 #include "raylib.h"
 #include "raymath.h"
+#include <cstdio>
 
 void weaponShooting() {
     if (inventory.selected == 3) {
     } else {
         if (inventory.currentWeapon->magCount > 0) {
             inventory.currentWeapon->magCount--;
+            handleShootingSound();
             bulletSpawner();
         }
     }
@@ -67,9 +69,22 @@ void weaponTimerController() {
     }
 }
 
-void bulletSpawner() {
-    PlaySound(sounds.gunshot);
+void handleShootingSound() {
+    printf("value = %d\n", GetRandomValue(1, 3));
+    switch (GetRandomValue(1, 3)) {
+    case 1:
+        PlaySound(sounds.ak_1);
+        break;
+    case 2:
+        PlaySound(sounds.ak_2);
+        break;
+    case 3:
+        PlaySound(sounds.ak_3);
+        break;
+    }
+}
 
+void bulletSpawner() {
     Vector2 bulletVel = cursorPos - player.pos;
     bulletVel = Vector2Normalize(bulletVel);
     int move = player.lookLeft ? -10 : 10;

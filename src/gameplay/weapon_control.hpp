@@ -15,6 +15,8 @@ inline std::vector<Bullet> bullets;
 void bulletController();
 void bulletSpawner();
 
+void handleShootingSound();
+
 void weaponShooting();
 void weaponReloading();
 void weaponTimerController();
