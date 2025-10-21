@@ -1,19 +1,22 @@
 #include "gameplay/inventory/inventory.hpp"
 #include "assets.hpp"
+#include "gameplay/player.hpp"
 #include "raygui.h"
 #include "raylib.h"
 
 void Inventory::changeInv() {
-    if (IsKeyPressed(KEY_ONE) && inventory.primary.weapon != PrimaryWeapon::NoPrimary) {
-        inventory.selected = 1;
-        inventory.currentWeapon = &inventory.primary.prop;
-    } else if (IsKeyPressed(KEY_TWO) &&
-               inventory.secondary.weapon != SecondaryWeapon::NoSecondary) {
-        inventory.selected = 2;
-        inventory.currentWeapon = &inventory.secondary.prop;
-    } else if (IsKeyPressed(KEY_THREE)) {
-        inventory.selected = 3;
-        inventory.currentWeapon = &inventory.melee.prop;
+    if (player.action == Ready) {
+        if (IsKeyPressed(KEY_ONE) && inventory.primary.weapon != PrimaryWeapon::NoPrimary) {
+            inventory.selected = 1;
+            inventory.currentWeapon = &inventory.primary.prop;
+        } else if (IsKeyPressed(KEY_TWO) &&
+                   inventory.secondary.weapon != SecondaryWeapon::NoSecondary) {
+            inventory.selected = 2;
+            inventory.currentWeapon = &inventory.secondary.prop;
+        } else if (IsKeyPressed(KEY_THREE)) {
+            inventory.selected = 3;
+            inventory.currentWeapon = &inventory.melee.prop;
+        }
     }
 }
 

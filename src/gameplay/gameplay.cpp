@@ -30,20 +30,27 @@ void Gameplay::run() {
     }
 
     if (IsKeyPressed(KEY_X)) {
-        inventory.primary.weapon = PrimaryWeapon::Ak47;
-        inventory.primary.prop = WeaponProp{
-            .magCount = 30,
-            .ammoCount = 120,
-            .magCapacity = 30,
-            .ammoCapacity = 120,
-            .firerate = 0.3,
-            .isAuto = true,
+        inventory.primary = {
+            .weapon = PrimaryWeapon::Ak47,
+            .prop =
+                WeaponProp{
+                    .magCount = 30,
+                    .ammoCount = 120,
+                    .magCapacity = 30,
+                    .ammoCapacity = 120,
+                    .isAuto = true,
+                    .firerate = 0.12,
+                    .fireTimer = 0.0,
+                    .reloadSpeed = 2.0,
+                    .reloadTimer = 2.0,
+                },
         };
         // inventory.selected = 1;
         // inventory.currentWeapon = &inventory.primary.prop;
     }
 
     bulletController();
+    weaponTimerController();
 
     player.movementInput();
     player.playerMove();

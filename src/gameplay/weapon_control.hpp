@@ -17,3 +17,4 @@ void bulletSpawner();
 
 void weaponShooting();
 void weaponReloading();
+void weaponTimerController();

@@ -1,9 +1,11 @@
 #include "draw.hpp"
 #include "assets.hpp"
+#include "gameplay/inventory/inventory.hpp"
 #include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include "player.hpp"
 #include "raylib.h"
+#include <cstdio>
 
 void drawGame() {
     drawTerrain();
@@ -22,6 +24,23 @@ void drawGame() {
             1,
             WHITE
         );
+    }
+
+    if (player.action == Reloading) {
+        Vector2 position = { player.pos.x - textures.reloadSpinner.width / 8 / 2,
+                             player.pos.y - 50 };
+
+        int frame = 8 *
+                    (inventory.currentWeapon->reloadSpeed - inventory.currentWeapon->reloadTimer) /
+                    inventory.currentWeapon->reloadSpeed;
+
+        int nextPos = textures.reloadSpinner.width / 8 * frame;
+        Rectangle frameRec = { static_cast<float>(nextPos),
+                               0.0f,
+                               (float)textures.reloadSpinner.width / 8,
+                               (float)textures.reloadSpinner.height };
+
+        DrawTextureRec(textures.reloadSpinner, frameRec, position, WHITE);
     }
 
     DrawTexture(

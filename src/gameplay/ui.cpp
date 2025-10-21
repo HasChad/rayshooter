@@ -7,14 +7,18 @@ void ui() {
     DrawRectangle(0, GetScreenHeight() - 23, 120, 25, ColorAlpha(BLACK, 0.5));
     DrawText(TextFormat("Health: %.0f", player.health), 5, GetScreenHeight() - 20, 20, WHITE);
 
-    DrawRectangle(125, GetScreenHeight() - 23, 120, 25, ColorAlpha(BLACK, 0.5));
-    DrawText(
-        TextFormat(
-            "Ammo: %d / %d", inventory.currentWeapon->magCount, inventory.currentWeapon->ammoCount
-        ),
-        130,
-        GetScreenHeight() - 20,
-        20,
-        WHITE
-    );
+    if (inventory.selected != 3) {
+        DrawRectangle(125, GetScreenHeight() - 23, 120, 25, ColorAlpha(BLACK, 0.5));
+        DrawText(
+            TextFormat(
+                "Ammo: %d / %d",
+                inventory.currentWeapon->magCount,
+                inventory.currentWeapon->ammoCount
+            ),
+            130,
+            GetScreenHeight() - 20,
+            20,
+            WHITE
+        );
+    }
 };

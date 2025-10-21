@@ -5,6 +5,7 @@ void loadAssets() {
     textures.player = LoadTexture("sprites/player.png");
     textures.bullet = LoadTexture("sprites/bullet.png");
     textures.cursor = LoadTexture("sprites/cursor.png");
+    textures.reloadSpinner = LoadTexture("sprites/reload-spinner.png");
     textures.ak47 = LoadTexture("sprites/ak47.png");
     textures.glock = LoadTexture("sprites/glock.png");
     textures.hand = LoadTexture("sprites/hand.png");

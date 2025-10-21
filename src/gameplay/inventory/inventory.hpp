@@ -2,9 +2,6 @@
 
 #include <raylib.h>
 
-const float INV_WIDTH = 400.0;
-const float INV_HEIGHT = 300.0;
-
 enum PrimaryWeapon {
     NoPrimary,
     Ak47,
@@ -28,8 +25,11 @@ struct WeaponProp {
     int ammoCount;
     int magCapacity;
     int ammoCapacity;
-    float firerate;
     bool isAuto;
+    float firerate;
+    float fireTimer;
+    float reloadSpeed;
+    float reloadTimer;
 };
 
 struct Primary {
@@ -66,13 +66,6 @@ inline Inventory inventory = {
     .primary =
         Primary{
             .weapon = NoPrimary,
-            .prop =
-                WeaponProp{
-                    .magCount = 0,
-                    .ammoCount = 0,
-                    .firerate = 0.0,
-                    .isAuto = false,
-                },
         },
 
     .secondary =
@@ -84,8 +77,11 @@ inline Inventory inventory = {
                     .ammoCount = 30,
                     .magCapacity = 10,
                     .ammoCapacity = 30,
-                    .firerate = 0.3,
                     .isAuto = false,
+                    .firerate = 0.3,
+                    .fireTimer = 0.0,
+                    .reloadSpeed = 1.5,
+                    .reloadTimer = 1.5,
                 },
         },
 
@@ -95,11 +91,17 @@ inline Inventory inventory = {
             .prop =
                 WeaponProp{
                     .magCount = 1,
-                    .ammoCount = 0,
-                    .firerate = 1.0,
+                    .ammoCount = 1,
+                    .magCapacity = 1,
+                    .ammoCapacity = 1,
                     .isAuto = false,
+                    .firerate = 1,
+                    .fireTimer = 0,
+                    .reloadSpeed = 1,
+                    .reloadTimer = 1,
                 },
         },
+
     .currentWeapon = &inventory.melee.prop,
 };
 

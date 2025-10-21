@@ -1,7 +1,6 @@
 #include "player.hpp"
 #include "assets.hpp"
 #include "gameplay/inventory/inventory.hpp"
-#include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include <raylib.h>
 #include <raymath.h>
@@ -23,14 +22,27 @@ void Player::playerMove() {
     pos += vel;
 }
 
+bool canShoot() {
+    return ((!inventory.currentWeapon->isAuto && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ||
+            (inventory.currentWeapon->isAuto && IsMouseButtonDown(MOUSE_BUTTON_LEFT))) &&
+           inventory.currentWeapon->fireTimer <= 0;
+}
+
+bool canReload() {
+    return (
+        (IsKeyPressed(KEY_R) &&
+         inventory.currentWeapon->magCount < inventory.currentWeapon->magCapacity) ||
+        inventory.currentWeapon->magCount == 0
+    );
+}
+
 void Player::handleWeapon() {
-    if ((!inventory.currentWeapon->isAuto && IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) ||
-        (inventory.currentWeapon->isAuto && IsMouseButtonDown(MOUSE_BUTTON_LEFT))) {
-        weaponShooting();
+    if (canShoot() && player.action == Ready) {
+        player.action = Shooting;
     }
 
-    if (IsKeyPressed(KEY_R)) {
-        weaponReloading();
+    if (canReload() && player.action == Ready) {
+        player.action = Reloading;
     }
 }
 

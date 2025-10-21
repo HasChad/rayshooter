@@ -3,6 +3,7 @@
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "globals.hpp"
+#include "raylib.h"
 #include "raymath.h"
 
 void weaponShooting() {
@@ -12,10 +13,6 @@ void weaponShooting() {
             inventory.currentWeapon->magCount--;
             bulletSpawner();
         }
-
-        if (inventory.currentWeapon->magCount == 0) {
-            weaponReloading();
-        }
     }
 }
 
@@ -23,15 +20,43 @@ void weaponReloading() {
     if (inventory.currentWeapon->magCount < inventory.currentWeapon->magCapacity &&
         inventory.currentWeapon->ammoCount > 0) {
 
-        if (inventory.currentWeapon->ammoCount + inventory.currentWeapon->magCount >=
-            inventory.currentWeapon->magCapacity) {
-            inventory.currentWeapon->ammoCount -=
-                (inventory.currentWeapon->magCapacity - inventory.currentWeapon->magCount);
-            inventory.currentWeapon->magCount = inventory.currentWeapon->magCapacity;
+        inventory.currentWeapon->reloadTimer -= GetFrameTime();
 
+        if (inventory.currentWeapon->reloadTimer <= 0) {
+            if (inventory.currentWeapon->ammoCount + inventory.currentWeapon->magCount >=
+                inventory.currentWeapon->magCapacity) {
+                inventory.currentWeapon->ammoCount -=
+                    (inventory.currentWeapon->magCapacity - inventory.currentWeapon->magCount);
+                inventory.currentWeapon->magCount = inventory.currentWeapon->magCapacity;
+
+            } else {
+                inventory.currentWeapon->magCount += inventory.currentWeapon->ammoCount;
+                inventory.currentWeapon->ammoCount = 0;
+            }
+        }
+    }
+}
+
+void weaponTimerController() {
+    if (player.action == Shooting) {
+        if (inventory.currentWeapon->fireTimer <= 0) {
+            weaponShooting();
+            inventory.currentWeapon->fireTimer = inventory.currentWeapon->firerate;
         } else {
-            inventory.currentWeapon->magCount += inventory.currentWeapon->ammoCount;
-            inventory.currentWeapon->ammoCount = 0;
+            inventory.currentWeapon->fireTimer -= GetFrameTime();
+            if (inventory.currentWeapon->fireTimer <= 0) {
+                player.action = Ready;
+            }
+        }
+    }
+
+    if (player.action == Reloading) {
+        if (inventory.currentWeapon->reloadTimer > 0) {
+            inventory.currentWeapon->reloadTimer -= GetFrameTime();
+        } else {
+            weaponReloading();
+            inventory.currentWeapon->reloadTimer = inventory.currentWeapon->reloadSpeed;
+            player.action = Ready;
         }
     }
 }
