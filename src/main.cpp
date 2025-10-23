@@ -28,27 +28,27 @@ int main() {
 
         if (IsKeyPressed(KEY_ESCAPE)) {
             switch (gameState) {
-            case MAINMENU:
+            case GameState::MAINMENU:
                 break;
-            case GAMEPLAY:
-                gameState = PAUSE;
+            case GameState::GAMEPLAY:
+                gameState = GameState::PAUSE;
                 ShowCursor();
                 break;
-            case PAUSE:
-                gameState = GAMEPLAY;
+            case GameState::PAUSE:
+                gameState = GameState::GAMEPLAY;
                 HideCursor();
             }
         }
 
         switch (gameState) {
-        case MAINMENU:
+        case GameState::MAINMENU:
             break;
 
-        case GAMEPLAY:
+        case GameState::GAMEPLAY:
             gameplay.run();
             break;
 
-        case PAUSE:
+        case GameState::PAUSE:
             break;
         }
 
@@ -57,15 +57,15 @@ int main() {
         ClearBackground(BLACK);
 
         switch (gameState) {
-        case MAINMENU:
+        case GameState::MAINMENU:
             mainMenu.ui();
             break;
 
-        case GAMEPLAY:
+        case GameState::GAMEPLAY:
             gameplay.draw();
             break;
 
-        case PAUSE:
+        case GameState::PAUSE:
             gameplay.draw();
             pause.ui();
             break;

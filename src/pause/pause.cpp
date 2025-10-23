@@ -27,7 +27,7 @@ void Pause::ui() {
     Rectangle quitButton = { boxRec.x + 25, boxRec.y + 70, buttonSize.x, buttonSize.y };
 
     if (GuiButton(playButton, "Resume")) {
-        gameState = GAMEPLAY;
+        gameState = GameState::GAMEPLAY;
     }
 
     if (GuiButton(quitButton, "Quit")) {

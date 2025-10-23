@@ -25,7 +25,7 @@ void MainMenu::ui() {
     Rectangle quitButton = { boxRec.x + 50, boxRec.y + 70, 150, 25 };
 
     if (GuiButton(playButton, "Play")) {
-        gameState = GAMEPLAY;
+        gameState = GameState::GAMEPLAY;
         HideCursor();
     }
 

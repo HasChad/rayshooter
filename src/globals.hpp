@@ -3,8 +3,8 @@
 #include <raylib.h>
 #include <raymath.h>
 
-typedef enum GameState { MAINMENU, GAMEPLAY, PAUSE } GameState;
-inline GameState gameState = MAINMENU;
+enum class GameState { MAINMENU, GAMEPLAY, PAUSE };
+inline GameState gameState = GameState::MAINMENU;
 
 inline Vector2 cursorPos;
 
