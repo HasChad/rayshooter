@@ -10,11 +10,11 @@
 
 int main() {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(800, 450, "RayShooter");
+    InitWindow(800, 600, "RayShooter");
     InitAudioDevice();
+
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));
-
     SetExitKey(0);
 
     loadAssets();

@@ -6,31 +6,25 @@
 const float PLAYER_SPEED = 2.0f;
 const float SHIFT_SPEED = 1.0f;
 
-enum PlayerAction {
+enum class PlayerAction {
     Ready,
     Shooting,
     Reloading,
 };
 
 struct Player {
-    float health;
-    Vector2 vel;
-    Vector2 pos;
-    Vector2 rec;
-    bool lookLeft;
-    PlayerAction action;
+    float health = 100.0f;
+    float armor = 100.0f;
+    Vector2 vel = { 0, 0 };
+    Vector2 pos = { 0, 0 };
+    Vector2 rec = { 20, 20 };
+    bool lookLeft = false;
+    PlayerAction action = PlayerAction::Ready;
 
     void movementInput();
     void playerMove();
     void handleWeapon();
-    void draw();
+    void draw() const;
 };
 
-inline Player player = {
-    .health = 100,
-    .vel = Vector2Zero(),
-    .pos = { 0, 0 },
-    .rec = { 20, 20 },
-    .lookLeft = false,
-    .action = Ready,
-};
+inline Player player;

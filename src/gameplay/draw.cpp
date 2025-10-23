@@ -25,7 +25,7 @@ void drawGame() {
         );
     }
 
-    if (player.action == Reloading) {
+    if (player.action == PlayerAction::Reloading) {
         Vector2 position = { player.pos.x - textures.reloadSpinner.width / 8 / 2,
                              player.pos.y - 50 };
 

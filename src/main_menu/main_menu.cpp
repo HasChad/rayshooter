@@ -16,7 +16,9 @@ void MainMenu::ui() {
     GuiPanel(boxRec, NULL);
 
     // Draw text
-    DrawText("RayShooter", boxRec.x + 65, boxRec.y + 10, 20, BLACK);
+    const char* text = TextFormat("RayShooter");
+    int textSize = MeasureText(text, 20);
+    DrawText(text, boxRec.x + boxRec.width / 2.0 - textSize / 2.0, boxRec.y + 10, 20, BLACK);
 
     // Vertical buttons
     Rectangle playButton = { boxRec.x + 50, boxRec.y + 40, 150, 25 };

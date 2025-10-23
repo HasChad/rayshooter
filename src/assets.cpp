@@ -25,4 +25,5 @@ void loadAssets() {
     sounds.ak_1 = LoadSound("sounds/ak_1.ogg");
     sounds.ak_2 = LoadSound("sounds/ak_2.ogg");
     sounds.ak_3 = LoadSound("sounds/ak_3.ogg");
+    sounds.open_drop = LoadSound("sounds/open_drop.ogg");
 }

@@ -5,11 +5,11 @@
 #include "raylib.h"
 
 void Inventory::changeInv() {
-    if (player.action == Ready) {
-        if (IsKeyPressed(KEY_ONE) && primary.weapon != PrimaryWeapon::NoPrimary) {
+    if (player.action == PlayerAction::Ready) {
+        if (IsKeyPressed(KEY_ONE) && primary.weapon != PrimaryWeapon::None) {
             selected = 1;
             currentWeapon = &primary.prop;
-        } else if (IsKeyPressed(KEY_TWO) && secondary.weapon != SecondaryWeapon::NoSecondary) {
+        } else if (IsKeyPressed(KEY_TWO) && secondary.weapon != SecondaryWeapon::None) {
             selected = 2;
             currentWeapon = &secondary.prop;
         } else if (IsKeyPressed(KEY_THREE)) {
@@ -49,37 +49,37 @@ void drawWeapons() {
 
     // primary
     switch (inventory.primary.weapon) {
-    case NoPrimary:
+    case PrimaryWeapon::None:
         break;
-    case Ak47:
+    case PrimaryWeapon::Ak47:
         DrawTexture(textures.ak47, paddingX, 0, WHITE);
         break;
-    case MosinNagant:
+    case PrimaryWeapon::MosinNagant:
         DrawTexture(textures.mosin, paddingX, 0, WHITE);
         break;
     }
 
     // secondary
     switch (inventory.secondary.weapon) {
-    case NoSecondary:
+    case SecondaryWeapon::None:
         break;
-    case Glock:
+    case SecondaryWeapon::Glock:
         DrawTexture(textures.glock, paddingX, 1 * 48, WHITE);
         break;
-    case Fnx:
+    case SecondaryWeapon::Fnx:
         DrawTexture(textures.fnx, paddingX, 1 * 48, WHITE);
         break;
     }
 
     // melee
     switch (inventory.melee.weapon) {
-    case Hand:
+    case MeleeWeapon::Hand:
         DrawTexture(textures.hand, paddingX, 2 * 48, WHITE);
         break;
-    case Knife:
+    case MeleeWeapon::Knife:
         DrawTexture(textures.knife, paddingX, 2 * 48, WHITE);
         break;
-    case BaseballBat:
+    case MeleeWeapon::BaseballBat:
         DrawTexture(textures.baseballbat, paddingX, 2 * 48, WHITE);
         break;
     }

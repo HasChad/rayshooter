@@ -13,10 +13,13 @@ void Pause::ui() {
         boxSize.y,
     };
 
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), ColorAlpha(BLACK, 0.5));
     GuiPanel(boxRec, NULL);
 
     // Draw text
-    DrawText("Game Paused", boxRec.x + 35, boxRec.y + 5, 20, BLACK);
+    const char* text = TextFormat("Game Paused");
+    int textSize = MeasureText(text, 20);
+    DrawText(text, boxRec.x + boxRec.width / 2.0 - textSize / 2.0, boxRec.y + 10, 20, BLACK);
 
     // Vertical buttons
     Vector2 buttonSize = { 150, 25 };

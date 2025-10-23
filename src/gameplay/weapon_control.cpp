@@ -5,7 +5,6 @@
 #include "globals.hpp"
 #include "raylib.h"
 #include "raymath.h"
-#include <cstdio>
 
 void weaponShooting() {
     if (inventory.selected == 3) {
@@ -40,7 +39,7 @@ void weaponReloading() {
 }
 
 void weaponTimerController() {
-    if (player.action == Shooting) {
+    if (player.action == PlayerAction::Shooting) {
         if (inventory.currentWeapon->fireTimer <= 0) {
             inventory.currentWeapon->fireTimer = inventory.currentWeapon->firerate;
             weaponShooting();
@@ -49,12 +48,12 @@ void weaponTimerController() {
             inventory.currentWeapon->fireTimer -= GetFrameTime();
 
             if (inventory.currentWeapon->fireTimer <= 0) {
-                player.action = Ready;
+                player.action = PlayerAction::Ready;
             }
         }
     }
 
-    if (player.action == Reloading) {
+    if (player.action == PlayerAction::Reloading) {
         if (inventory.currentWeapon->reloadTimer <= 0) {
             inventory.currentWeapon->reloadTimer = inventory.currentWeapon->reloadSpeed;
 
@@ -63,14 +62,13 @@ void weaponTimerController() {
 
             if (inventory.currentWeapon->reloadTimer <= 0) {
                 weaponReloading();
-                player.action = Ready;
+                player.action = PlayerAction::Ready;
             }
         }
     }
 }
 
 void handleShootingSound() {
-    printf("value = %d\n", GetRandomValue(1, 3));
     switch (GetRandomValue(1, 3)) {
     case 1:
         PlaySound(sounds.ak_1);

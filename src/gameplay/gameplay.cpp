@@ -11,9 +11,6 @@
 #include <raylib.h>
 
 void Gameplay::run() {
-    UpdateMusicStream(sounds.wood_ambiance);
-    cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera);
-
     /* Maybe i will use this locking cursor if i cant find better solution
     if (GetMousePosition().x < 0)
         SetMousePosition(0, GetMousePosition().y);
@@ -25,28 +22,9 @@ void Gameplay::run() {
         SetMousePosition(GetMousePosition().x, screen.height);
     */
 
+    UpdateMusicStream(sounds.wood_ambiance);
     if (IsKeyPressed(KEY_SPACE)) {
         player.pos = Vector2Zero();
-    }
-
-    if (IsKeyPressed(KEY_X)) {
-        inventory.primary = {
-            .weapon = PrimaryWeapon::Ak47,
-            .prop =
-                WeaponProp{
-                    .magCount = 30,
-                    .ammoCount = 120,
-                    .magCapacity = 30,
-                    .ammoCapacity = 120,
-                    .isAuto = true,
-                    .firerate = 0.12,
-                    .fireTimer = 0.0,
-                    .reloadSpeed = 2.0,
-                    .reloadTimer = 0.0,
-                },
-        };
-        // inventory.selected = 1;
-        // inventory.currentWeapon = &inventory.primary.prop;
     }
 
     bulletController();
@@ -61,10 +39,12 @@ void Gameplay::run() {
     gameCamera.update();
     gameCamera.handleAim();
     gameCamera.handleZoom();
+
+    cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera.camera);
 }
 
 void Gameplay::draw() {
-    BeginMode2D(gameCamera);
+    BeginMode2D(gameCamera.camera);
     drawGame();
     EndMode2D();
     inventory.draw();

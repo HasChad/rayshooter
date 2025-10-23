@@ -30,6 +30,7 @@ struct Sounds {
     Sound ak_1;
     Sound ak_2;
     Sound ak_3;
+    Sound open_drop;
 };
 inline Sounds sounds;
 

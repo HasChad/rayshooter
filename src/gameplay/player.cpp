@@ -38,16 +38,16 @@ bool canReload() {
 }
 
 void Player::handleWeapon() {
-    if (canShoot() && player.action == Ready) {
-        player.action = Shooting;
+    if (canShoot() && player.action == PlayerAction::Ready) {
+        player.action = PlayerAction::Shooting;
     }
 
-    if (canReload() && player.action == Ready) {
-        player.action = Reloading;
+    if (canReload() && player.action == PlayerAction::Ready) {
+        player.action = PlayerAction::Reloading;
     }
 }
 
-void Player::draw() {
+void Player::draw() const {
     player.lookLeft = cursorPos.x < player.pos.x ? true : false;
 
     int flip = lookLeft ? -1 : 1;

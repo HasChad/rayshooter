@@ -1,9 +1,9 @@
 #pragma once
 
 struct MainMenu {
-    bool quit;
+    bool quit = false;
 
     void ui();
 };
 
-inline MainMenu mainMenu{ .quit = false };
+inline MainMenu mainMenu;
