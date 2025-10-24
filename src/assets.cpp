@@ -17,7 +17,7 @@ void loadAssets() {
     textures.drop = LoadTexture("sprites/drop.png");
     textures.dropItems = LoadTexture("sprites/drop-items.png");
 
-    terraTex.ground = LoadTexture("sprites/beton.png");
+    terraTex.ground = LoadTexture("sprites/dirt.png");
 
     sounds.wood_ambiance = LoadMusicStream("sounds/wood_ambiance.mp3");
     sounds.walk_forest = LoadMusicStream("sounds/walk_forest.mp3");

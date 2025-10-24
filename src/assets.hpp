@@ -24,7 +24,7 @@ struct TerrainTextures {
 };
 inline TerrainTextures terraTex;
 
-struct Sounds {
+struct Audio {
     Music wood_ambiance;
     Music walk_forest;
     Sound ak_1;
@@ -32,6 +32,6 @@ struct Sounds {
     Sound ak_3;
     Sound open_drop;
 };
-inline Sounds sounds;
+inline Audio sounds;
 
 void loadAssets();

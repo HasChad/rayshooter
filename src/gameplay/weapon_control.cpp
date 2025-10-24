@@ -2,7 +2,6 @@
 #include "assets.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
-#include "globals.hpp"
 #include "raylib.h"
 #include "raymath.h"
 
@@ -83,12 +82,9 @@ void handleShootingSound() {
 }
 
 void bulletSpawner() {
-    Vector2 bulletVel = cursorPos - player.pos;
-    bulletVel = Vector2Normalize(bulletVel);
-    int move = player.lookLeft ? -10 : 10;
-    Vector2 bulletPos = { player.pos.x + move, player.pos.y - 4 };
+    Bullet bullet;
 
-    bullets.push_back({ bulletPos, bulletVel, 3.0 });
+    bullets.push_back(bullet);
 }
 
 void bulletController() {

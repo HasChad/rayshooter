@@ -131,7 +131,7 @@ inline Melee knife = {
 
 struct Inventory {
     int selected = 1;
-    Primary primary = mosinNagant;
+    Primary primary = ak47;
     Secondary secondary = glock;
     Melee melee = knife;
     WeaponProp* currentWeapon = &primary.prop;
