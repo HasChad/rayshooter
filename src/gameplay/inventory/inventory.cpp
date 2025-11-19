@@ -48,16 +48,7 @@ void drawWeapons() {
     int paddingX = 10;
 
     // primary
-    switch (inventory.primary.weapon) {
-    case PrimaryWeapon::None:
-        break;
-    case PrimaryWeapon::Ak47:
-        DrawTexture(textures.ak47, paddingX, 0, WHITE);
-        break;
-    case PrimaryWeapon::MosinNagant:
-        DrawTexture(textures.mosin, paddingX, 0, WHITE);
-        break;
-    }
+    DrawTexture(inventory.primary.assets.sprite, paddingX, 0, WHITE);
 
     // secondary
     switch (inventory.secondary.weapon) {

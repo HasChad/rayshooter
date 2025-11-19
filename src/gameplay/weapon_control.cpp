@@ -67,19 +67,7 @@ void weaponTimerController() {
     }
 }
 
-void handleShootingSound() {
-    switch (GetRandomValue(1, 3)) {
-    case 1:
-        PlaySound(sounds.ak_1);
-        break;
-    case 2:
-        PlaySound(sounds.ak_2);
-        break;
-    case 3:
-        PlaySound(sounds.ak_3);
-        break;
-    }
-}
+void handleShootingSound() { PlaySound(sounds.ak_shot); }
 
 void bulletSpawner() {
     Bullet bullet;

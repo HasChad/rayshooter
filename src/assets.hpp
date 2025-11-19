@@ -27,9 +27,12 @@ inline TerrainTextures terraTex;
 struct Audio {
     Music wood_ambiance;
     Music walk_forest;
-    Sound ak_1;
-    Sound ak_2;
-    Sound ak_3;
+    Sound reload_rifle;
+    Sound reload_pistol;
+    Sound ak_shot;
+    Sound mosin_shot;
+    Sound glock_shot;
+    Sound fnx_shot;
     Sound open_drop;
 };
 inline Audio sounds;

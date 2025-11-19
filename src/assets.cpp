@@ -22,8 +22,13 @@ void loadAssets() {
     sounds.wood_ambiance = LoadMusicStream("sounds/wood_ambiance.mp3");
     sounds.walk_forest = LoadMusicStream("sounds/walk_forest.mp3");
 
-    sounds.ak_1 = LoadSound("sounds/ak_1.ogg");
-    sounds.ak_2 = LoadSound("sounds/ak_2.ogg");
-    sounds.ak_3 = LoadSound("sounds/ak_3.ogg");
+    sounds.reload_rifle = LoadSound("sounds/reload_rifle.ogg");
+    sounds.reload_pistol = LoadSound("sounds/reload_pisto.ogg");
+
+    sounds.ak_shot = LoadSound("sounds/ak_1.ogg");
+    sounds.mosin_shot = LoadSound("sounds/mosin_1.ogg");
+    sounds.glock_shot = LoadSound("sounds/glock19_single_1.ogg");
+    sounds.fnx_shot = LoadSound("sounds/fnx_1.ogg");
+
     sounds.open_drop = LoadSound("sounds/open_drop.ogg");
 }

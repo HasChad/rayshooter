@@ -1,5 +1,6 @@
 #pragma once
 
+#include "assets.hpp"
 #include <raylib.h>
 
 enum class PrimaryWeapon {
@@ -32,9 +33,16 @@ struct WeaponProp {
     float reloadTimer;
 };
 
+struct WeaponAssets {
+    Texture2D sprite;
+    Sound shootingSound;
+    Sound reloadingSound;
+};
+
 struct Primary {
     PrimaryWeapon weapon;
     WeaponProp prop;
+    WeaponAssets assets;
 };
 
 inline Primary ak47{
@@ -51,6 +59,12 @@ inline Primary ak47{
             .reloadSpeed = 2.0,
             .reloadTimer = 0.0,
         },
+    .assets =
+        WeaponAssets{
+            .sprite = textures.ak47,
+            .shootingSound = sounds.ak_shot,
+            .reloadingSound = sounds.reload_rifle,
+        },
 };
 
 inline Primary mosinNagant{
@@ -66,6 +80,12 @@ inline Primary mosinNagant{
             .fireTimer = 0.0,
             .reloadSpeed = 3.0,
             .reloadTimer = 0.0,
+        },
+    .assets =
+        WeaponAssets{
+            .sprite = textures.mosin,
+            .shootingSound = sounds.mosin_shot,
+            .reloadingSound = sounds.reload_rifle,
         },
 };
 
@@ -131,7 +151,7 @@ inline Melee knife = {
 
 struct Inventory {
     int selected = 1;
-    Primary primary = ak47;
+    Primary primary = mosinNagant;
     Secondary secondary = glock;
     Melee melee = knife;
     WeaponProp* currentWeapon = &primary.prop;
