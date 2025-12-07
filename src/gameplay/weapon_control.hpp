@@ -18,6 +18,7 @@ void bulletController();
 void bulletSpawner();
 
 void handleShootingSound();
+void handleReloadingSound();
 
 void weaponShooting();
 void weaponReloading();

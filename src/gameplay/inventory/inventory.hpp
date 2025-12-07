@@ -151,6 +151,28 @@ inline Secondary fnx = {
 
 // --- Melee Weapons ---------------------------------------
 
+inline Melee hand = {
+    .weapon = MeleeWeapon::Hand,
+    .prop =
+        WeaponProp{
+            .magCount = 1,
+            .ammoCount = 1,
+            .magCapacity = 1,
+            .ammoCapacity = 1,
+            .isAuto = false,
+            .firerate = 1,
+            .fireTimer = 0,
+            .reloadSpeed = 1,
+            .reloadTimer = 0,
+        },
+    .assets =
+        WeaponAssets{
+            .sprite = &textures.hand,
+            .shootingSound = &sounds.mosin_shot,
+            .reloadingSound = &sounds.reload_rifle,
+        },
+};
+
 inline Melee knife = {
     .weapon = MeleeWeapon::Knife,
     .prop =
@@ -173,13 +195,35 @@ inline Melee knife = {
         },
 };
 
+inline Melee baseballbat = {
+    .weapon = MeleeWeapon::BaseballBat,
+    .prop =
+        WeaponProp{
+            .magCount = 1,
+            .ammoCount = 1,
+            .magCapacity = 1,
+            .ammoCapacity = 1,
+            .isAuto = false,
+            .firerate = 1,
+            .fireTimer = 0,
+            .reloadSpeed = 1,
+            .reloadTimer = 0,
+        },
+    .assets =
+        WeaponAssets{
+            .sprite = &textures.baseballbat,
+            .shootingSound = &sounds.mosin_shot,
+            .reloadingSound = &sounds.reload_rifle,
+        },
+};
+
 // enum class Medkit { NoMedkit, Small, Medium, Big };
 
 struct Inventory {
     int selected = 1;
     Primary primary = ak47;
     Secondary secondary = glock;
-    Melee melee = knife;
+    Melee melee = hand;
     WeaponProp* currentWeapon = &primary.prop;
 
     void changeInv();

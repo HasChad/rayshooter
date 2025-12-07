@@ -1,5 +1,4 @@
 #include "gameplay/weapon_control.hpp"
-#include "assets.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
@@ -7,32 +6,26 @@
 
 void weaponShooting() {
     if (inventory.selected == 3) {
+        // make cqc fight
     } else {
-        if (inventory.currentWeapon->magCount > 0) {
-            inventory.currentWeapon->magCount--;
-            handleShootingSound();
-            bulletSpawner();
-        }
+        inventory.currentWeapon->magCount--;
+        bulletSpawner();
     }
 }
 
 void weaponReloading() {
-    if (inventory.currentWeapon->magCount < inventory.currentWeapon->magCapacity &&
-        inventory.currentWeapon->ammoCount > 0) {
+    inventory.currentWeapon->reloadTimer -= GetFrameTime();
 
-        inventory.currentWeapon->reloadTimer -= GetFrameTime();
+    if (inventory.currentWeapon->reloadTimer <= 0) {
+        if (inventory.currentWeapon->ammoCount + inventory.currentWeapon->magCount >=
+            inventory.currentWeapon->magCapacity) {
+            inventory.currentWeapon->ammoCount -=
+                (inventory.currentWeapon->magCapacity - inventory.currentWeapon->magCount);
+            inventory.currentWeapon->magCount = inventory.currentWeapon->magCapacity;
 
-        if (inventory.currentWeapon->reloadTimer <= 0) {
-            if (inventory.currentWeapon->ammoCount + inventory.currentWeapon->magCount >=
-                inventory.currentWeapon->magCapacity) {
-                inventory.currentWeapon->ammoCount -=
-                    (inventory.currentWeapon->magCapacity - inventory.currentWeapon->magCount);
-                inventory.currentWeapon->magCount = inventory.currentWeapon->magCapacity;
-
-            } else {
-                inventory.currentWeapon->magCount += inventory.currentWeapon->ammoCount;
-                inventory.currentWeapon->ammoCount = 0;
-            }
+        } else {
+            inventory.currentWeapon->magCount += inventory.currentWeapon->ammoCount;
+            inventory.currentWeapon->ammoCount = 0;
         }
     }
 }
@@ -67,7 +60,8 @@ void weaponTimerController() {
     }
 }
 
-void handleShootingSound() { PlaySound(sounds.ak_shot); }
+void handleShootingSound() { PlaySound(*inventory.primary.assets.shootingSound); }
+void handleReloadingSound() { PlaySound(*inventory.primary.assets.reloadingSound); }
 
 void bulletSpawner() {
     Bullet bullet;
