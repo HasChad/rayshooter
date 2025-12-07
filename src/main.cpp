@@ -5,13 +5,23 @@
 #include "pause/pause.hpp"
 #include "raygui.h"
 
+#include <cstdio>
 #include <raylib.h>
 #include <raymath.h>
 
 int main() {
+    printf("MAIN STARTED\n");
+
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+    printf("FLAGS SET\n");
+    fflush(stdout);
+
     InitWindow(800, 600, "RayShooter");
     InitAudioDevice();
+
+    printf("WINDOW INIT\n");
+    fflush(stdout);
 
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));

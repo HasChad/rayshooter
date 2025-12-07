@@ -1,5 +1,4 @@
 #include "gameplay/inventory/inventory.hpp"
-#include "assets.hpp"
 #include "gameplay/player.hpp"
 #include "raygui.h"
 #include "raylib.h"
@@ -47,31 +46,7 @@ void Inventory::draw() {
 void drawWeapons() {
     int paddingX = 10;
 
-    // primary
-    DrawTexture(inventory.primary.assets.sprite, paddingX, 0, WHITE);
-
-    // secondary
-    switch (inventory.secondary.weapon) {
-    case SecondaryWeapon::None:
-        break;
-    case SecondaryWeapon::Glock:
-        DrawTexture(textures.glock, paddingX, 1 * 48, WHITE);
-        break;
-    case SecondaryWeapon::Fnx:
-        DrawTexture(textures.fnx, paddingX, 1 * 48, WHITE);
-        break;
-    }
-
-    // melee
-    switch (inventory.melee.weapon) {
-    case MeleeWeapon::Hand:
-        DrawTexture(textures.hand, paddingX, 2 * 48, WHITE);
-        break;
-    case MeleeWeapon::Knife:
-        DrawTexture(textures.knife, paddingX, 2 * 48, WHITE);
-        break;
-    case MeleeWeapon::BaseballBat:
-        DrawTexture(textures.baseballbat, paddingX, 2 * 48, WHITE);
-        break;
-    }
+    DrawTexture(*inventory.primary.assets.sprite, paddingX, 0, WHITE);
+    DrawTexture(*inventory.secondary.assets.sprite, paddingX, 1 * 48, WHITE);
+    DrawTexture(*inventory.melee.assets.sprite, paddingX, 2 * 48, WHITE);
 }

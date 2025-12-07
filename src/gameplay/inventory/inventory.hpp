@@ -34,9 +34,9 @@ struct WeaponProp {
 };
 
 struct WeaponAssets {
-    Texture2D sprite;
-    Sound shootingSound;
-    Sound reloadingSound;
+    Texture2D* sprite;
+    Sound* shootingSound;
+    Sound* reloadingSound;
 };
 
 struct Primary {
@@ -44,6 +44,20 @@ struct Primary {
     WeaponProp prop;
     WeaponAssets assets;
 };
+
+struct Secondary {
+    SecondaryWeapon weapon;
+    WeaponProp prop;
+    WeaponAssets assets;
+};
+
+struct Melee {
+    MeleeWeapon weapon;
+    WeaponProp prop;
+    WeaponAssets assets;
+};
+
+// ----- Primary Weapons ---------------------------------------
 
 inline Primary ak47{
     .weapon = PrimaryWeapon::Ak47,
@@ -61,9 +75,9 @@ inline Primary ak47{
         },
     .assets =
         WeaponAssets{
-            .sprite = textures.ak47,
-            .shootingSound = sounds.ak_shot,
-            .reloadingSound = sounds.reload_rifle,
+            .sprite = &textures.ak47,
+            .shootingSound = &sounds.ak_shot,
+            .reloadingSound = &sounds.reload_rifle,
         },
 };
 
@@ -83,16 +97,13 @@ inline Primary mosinNagant{
         },
     .assets =
         WeaponAssets{
-            .sprite = textures.mosin,
-            .shootingSound = sounds.mosin_shot,
-            .reloadingSound = sounds.reload_rifle,
+            .sprite = &textures.mosin,
+            .shootingSound = &sounds.mosin_shot,
+            .reloadingSound = &sounds.reload_rifle,
         },
 };
 
-struct Secondary {
-    SecondaryWeapon weapon;
-    WeaponProp prop;
-};
+// ----- Secondary Weapons ---------------------------------------
 
 inline Secondary glock = {
     .weapon = SecondaryWeapon::Glock,
@@ -107,6 +118,12 @@ inline Secondary glock = {
             .fireTimer = 0.0,
             .reloadSpeed = 1.2,
             .reloadTimer = 0.0,
+        },
+    .assets =
+        WeaponAssets{
+            .sprite = &textures.glock,
+            .shootingSound = &sounds.glock_shot,
+            .reloadingSound = &sounds.reload_pistol,
         },
 };
 
@@ -124,12 +141,15 @@ inline Secondary fnx = {
             .reloadSpeed = 1.5,
             .reloadTimer = 0.0,
         },
+    .assets =
+        WeaponAssets{
+            .sprite = &textures.fnx,
+            .shootingSound = &sounds.fnx_shot,
+            .reloadingSound = &sounds.reload_pistol,
+        },
 };
 
-struct Melee {
-    MeleeWeapon weapon;
-    WeaponProp prop;
-};
+// --- Melee Weapons ---------------------------------------
 
 inline Melee knife = {
     .weapon = MeleeWeapon::Knife,
@@ -145,13 +165,19 @@ inline Melee knife = {
             .reloadSpeed = 1,
             .reloadTimer = 0,
         },
+    .assets =
+        WeaponAssets{
+            .sprite = &textures.knife,
+            .shootingSound = &sounds.mosin_shot,
+            .reloadingSound = &sounds.reload_rifle,
+        },
 };
 
 // enum class Medkit { NoMedkit, Small, Medium, Big };
 
 struct Inventory {
     int selected = 1;
-    Primary primary = mosinNagant;
+    Primary primary = ak47;
     Secondary secondary = glock;
     Melee melee = knife;
     WeaponProp* currentWeapon = &primary.prop;
