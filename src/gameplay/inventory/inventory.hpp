@@ -21,6 +21,15 @@ enum class MeleeWeapon {
     BaseballBat,
 };
 
+/*
+enum class Medkit {
+    None,
+    Small,
+    Medium,
+    Big,
+};
+*/
+
 struct WeaponProp {
     int magCount;
     int ammoCount;
@@ -217,8 +226,6 @@ inline Melee baseballbat = {
         },
 };
 
-// enum class Medkit { NoMedkit, Small, Medium, Big };
-
 struct Inventory {
     int selected = 1;
     Primary primary = ak47;
@@ -232,5 +239,3 @@ struct Inventory {
 };
 
 inline Inventory inventory;
-
-void drawWeapons();

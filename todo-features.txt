@@ -1,6 +1,8 @@
 TODO
+- update weapon props and sounds
+- make cqc mechanic
+- make player animation sprites
 - add zombies
-- add weapon
 
 FEATURES
 - run/walk

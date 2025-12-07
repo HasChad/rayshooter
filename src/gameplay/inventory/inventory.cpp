@@ -18,32 +18,11 @@ void Inventory::changeInv() {
     }
 }
 
-/*
-void Inventory::useMedKit() {
-    if (inventory.selected == 4) {
-        switch (inventory.medkit) {
-        case NoMedkit:
-            break;
-        case Small:
-            break;
-        case Medium:
-            break;
-        case Big:
-            break;
-        }
-    }
-}
-*/
-
 void Inventory::draw() {
     DrawRectangleGradientH(0, 0, 30, 3 * 48, DARKGRAY, ColorAlpha(WHITE, 0.0));
     DrawRectangleGradientH(0, (inventory.selected - 1) * 48, 70, 48, GRAY, ColorAlpha(WHITE, 0.0));
     DrawRectangle(0, (inventory.selected - 1) * 48, 5, 48, WHITE);
 
-    drawWeapons();
-}
-
-void drawWeapons() {
     int paddingX = 10;
 
     DrawTexture(*inventory.primary.assets.sprite, paddingX, 0, WHITE);
