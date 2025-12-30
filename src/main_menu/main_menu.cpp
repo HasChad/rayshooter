@@ -5,6 +5,8 @@
 #include "raygui.h"
 
 void MainMenu::ui() {
+    BeginDrawing();
+
     Vector2 boxSize = { 250, 100 };
     Rectangle boxRec{
         static_cast<float>(GetScreenWidth() / 2.0 - boxSize.x / 2.0),
@@ -25,11 +27,13 @@ void MainMenu::ui() {
     Rectangle quitButton = { boxRec.x + 50, boxRec.y + 70, 150, 25 };
 
     if (GuiButton(playButton, "Play")) {
-        gameState = GameState::GAMEPLAY;
         HideCursor();
+        gameState = GameState::GAMEPLAY;
     }
 
     if (GuiButton(quitButton, "Quit")) {
-        quit = true;
+        game.run = false;
     }
+
+    EndDrawing();
 }

@@ -1,14 +1,26 @@
 #include "gameplay/gameplay.hpp"
 #include "assets.hpp"
 #include "camera.hpp"
-#include "draw.hpp"
 #include "gameplay/inventory/inventory.hpp"
-#include "gameplay/ui.hpp"
 #include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
 #include "player.hpp"
 #include "raymath.h"
 #include <raylib.h>
+
+void Gameplay::controller() {
+    if (IsKeyPressed(KEY_ESCAPE)) {
+        ShowCursor();
+        gameState = GameState::PAUSE;
+    }
+
+    gameplay.run();
+
+    BeginDrawing();
+    ClearBackground(BLACK);
+    gameplay.draw();
+    EndDrawing();
+}
 
 void Gameplay::run() {
     /* Maybe i will use this locking cursor if i cant find better solution
@@ -41,12 +53,4 @@ void Gameplay::run() {
     gameCamera.handleZoom();
 
     cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera.camera);
-}
-
-void Gameplay::draw() {
-    BeginMode2D(gameCamera.camera);
-    drawGame();
-    EndMode2D();
-    inventory.draw();
-    ui();
 }

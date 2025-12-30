@@ -5,7 +5,8 @@
 const float CAMERA_SMOOTH_SPEED = 0.1f;
 constexpr float MAX_AIM_OFFSET = 200.0f;
 
-struct GameCamera {
+class GameCamera {
+  public:
     Camera2D camera = {
         .offset = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f },
         .target = { 0, 0 },

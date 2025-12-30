@@ -1,8 +1,12 @@
+CURRENTLY WORKING
+-
+
 TODO
 - update weapon props and sounds
 - make cqc mechanic
 - make player animation sprites
 - add zombies
+- fix bullet spawn point
 
 FEATURES
 - run/walk

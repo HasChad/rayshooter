@@ -1,8 +1,7 @@
 #pragma once
 
-struct MainMenu {
-    bool quit = false;
-
+class MainMenu {
+  public:
     void ui();
 };
 

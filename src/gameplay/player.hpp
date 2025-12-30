@@ -12,7 +12,8 @@ enum class PlayerAction {
     Reloading,
 };
 
-struct Player {
+class Player {
+  public:
     float health = 100.0f;
     float armor = 100.0f;
     Vector2 vel = { 0, 0 };

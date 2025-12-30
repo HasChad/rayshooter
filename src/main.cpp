@@ -2,86 +2,42 @@
 #include "gameplay/gameplay.hpp"
 #include "globals.hpp"
 #include "main_menu/main_menu.hpp"
-#include "pause/pause.hpp"
+#include "pause_menu/pause_menu.hpp"
 #include "raygui.h"
-
-#include <cstdio>
 #include <raylib.h>
 #include <raymath.h>
 
 int main() {
-    printf("MAIN STARTED\n");
-
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-
-    printf("FLAGS SET\n");
-    fflush(stdout);
+    SetConfigFlags(FLAG_MSAA_4X_HINT);
 
     InitWindow(800, 600, "RayShooter");
     InitAudioDevice();
-
-    printf("WINDOW INIT\n");
-    fflush(stdout);
-
     SetTargetFPS(60);
     SetWindowIcon(LoadImage("sprites/icon.png"));
     SetExitKey(0);
 
     loadAssets();
 
-    SetMasterVolume(0.3);
+    SetMasterVolume(game.volume);
     PlayMusicStream(sounds.wood_ambiance);
     PlayMusicStream(sounds.walk_forest);
 
-    while (!mainMenu.quit) {
-        mainMenu.quit = WindowShouldClose();
-
-        if (IsKeyPressed(KEY_ESCAPE)) {
-            switch (gameState) {
-            case GameState::MAINMENU:
-                break;
-            case GameState::GAMEPLAY:
-                gameState = GameState::PAUSE;
-                ShowCursor();
-                break;
-            case GameState::PAUSE:
-                gameState = GameState::GAMEPLAY;
-                HideCursor();
-            }
-        }
-
-        switch (gameState) {
-        case GameState::MAINMENU:
-            break;
-
-        case GameState::GAMEPLAY:
-            gameplay.run();
-            break;
-
-        case GameState::PAUSE:
-            break;
-        }
-
-        // Draw
-        BeginDrawing();
-        ClearBackground(BLACK);
-
+    while (game.run && !WindowShouldClose()) {
         switch (gameState) {
         case GameState::MAINMENU:
             mainMenu.ui();
             break;
 
         case GameState::GAMEPLAY:
-            gameplay.draw();
+            gameplay.controller();
             break;
 
         case GameState::PAUSE:
             gameplay.draw();
-            pause.ui();
+            pauseMenu.ui();
             break;
         }
-
-        EndDrawing();
     }
 
     StopMusicStream(sounds.wood_ambiance);

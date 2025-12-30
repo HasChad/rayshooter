@@ -1,9 +1,9 @@
-#include "gameplay/ui.hpp"
+#include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
 
-void ui() {
+void Gameplay::ui() {
     int lineLeft = GetScreenWidth() / 2 - 50;
     DrawRectangle(lineLeft, GetScreenHeight() - 12, 100, 2, WHITE);
 

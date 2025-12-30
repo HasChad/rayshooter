@@ -226,6 +226,8 @@ inline Melee baseballbat = {
         },
 };
 
+// --- Inventory ---------------------------------------
+
 struct Inventory {
     int selected = 1;
     Primary primary = ak47;
