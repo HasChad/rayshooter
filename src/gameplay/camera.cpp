@@ -5,6 +5,9 @@
 void GameCamera::update() {
     camera.target = player.pos;
     camera.offset = Vector2Lerp(camera.offset, targetOffset, CAMERA_SMOOTH_SPEED);
+
+    handleAim();
+    handleZoom();
 }
 
 void GameCamera::handleAim() {

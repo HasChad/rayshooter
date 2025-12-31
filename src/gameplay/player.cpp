@@ -6,6 +6,12 @@
 #include <raylib.h>
 #include <raymath.h>
 
+void Player::update() {
+    movementInput();
+    playerMove();
+    handleWeapon();
+}
+
 void Player::movementInput() {
     float up = IsKeyDown(KEY_W) ? 1 : 0;
     float down = IsKeyDown(KEY_S) ? 1 : 0;

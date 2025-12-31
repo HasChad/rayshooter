@@ -3,25 +3,35 @@
 #include "raygui.h"
 #include "raylib.h"
 
+void Inventory::update() {
+    changeInv();
+    useMedKit();
+}
+
 void Inventory::changeInv() {
     if (player.action == PlayerAction::Ready) {
         if (IsKeyPressed(KEY_ONE) && primary.weapon != PrimaryWeapon::None) {
-            selected = 1;
+            selected = WeaponSlot::Primary;
             currentWeapon = &primary.prop;
         } else if (IsKeyPressed(KEY_TWO) && secondary.weapon != SecondaryWeapon::None) {
-            selected = 2;
+            selected = WeaponSlot::Secondary;
             currentWeapon = &secondary.prop;
         } else if (IsKeyPressed(KEY_THREE)) {
-            selected = 3;
+            selected = WeaponSlot::Melee;
             currentWeapon = &melee.prop;
         }
     }
 }
 
+void Inventory::useMedKit() {}
+
 void Inventory::draw() {
     DrawRectangleGradientH(0, 0, 30, 3 * 48, DARKGRAY, ColorAlpha(WHITE, 0.0));
-    DrawRectangleGradientH(0, (inventory.selected - 1) * 48, 70, 48, GRAY, ColorAlpha(WHITE, 0.0));
-    DrawRectangle(0, (inventory.selected - 1) * 48, 5, 48, WHITE);
+
+    int offset = static_cast<int>(inventory.selected);
+
+    DrawRectangleGradientH(0, offset * 48, 70, 48, GRAY, ColorAlpha(WHITE, 0.0));
+    DrawRectangle(0, offset * 48, 5, 48, WHITE);
 
     int paddingX = 10;
 

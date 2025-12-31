@@ -22,10 +22,13 @@ class Player {
     bool lookLeft = false;
     PlayerAction action = PlayerAction::Ready;
 
+    void update();
+    void draw() const;
+
+  private:
     void movementInput();
     void playerMove();
     void handleWeapon();
-    void draw() const;
 };
 
 inline Player player;

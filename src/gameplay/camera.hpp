@@ -15,7 +15,14 @@ class GameCamera {
     };
     Vector2 targetOffset = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
 
+    void init() {
+        targetOffset = { GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f };
+        camera.offset = targetOffset;
+    }
+
     void update();
+
+  private:
     void handleAim();
     void handleZoom();
 };

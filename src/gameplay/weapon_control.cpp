@@ -5,7 +5,7 @@
 #include "raymath.h"
 
 void weaponShooting() {
-    if (inventory.selected == 3) {
+    if (inventory.selected == WeaponSlot::Melee) {
         // make cqc fight
     } else {
         inventory.currentWeapon->magCount--;
@@ -62,26 +62,26 @@ void weaponTimerController() {
 
 void handleShootingSound() {
     switch (inventory.selected) {
-    case 1:
+    case WeaponSlot::Primary:
         PlaySound(*inventory.primary.assets.shootingSound);
         break;
-    case 2:
+    case WeaponSlot::Secondary:
         PlaySound(*inventory.secondary.assets.shootingSound);
         break;
-    case 3:
+    case WeaponSlot::Melee:
         break;
     }
 }
 
 void handleReloadingSound() {
     switch (inventory.selected) {
-    case 1:
+    case WeaponSlot::Primary:
         PlaySound(*inventory.primary.assets.reloadingSound);
         break;
-    case 2:
+    case WeaponSlot::Secondary:
         PlaySound(*inventory.secondary.assets.reloadingSound);
         break;
-    case 3:
+    case WeaponSlot::Melee:
         break;
     }
 }

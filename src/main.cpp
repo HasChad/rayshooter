@@ -1,4 +1,5 @@
 #include "assets.hpp"
+#include "gameplay/camera.hpp"
 #include "gameplay/gameplay.hpp"
 #include "globals.hpp"
 #include "main_menu/main_menu.hpp"
@@ -18,6 +19,7 @@ int main() {
     SetExitKey(0);
 
     loadAssets();
+    gameCamera.init();
 
     SetMasterVolume(game.volume);
     PlayMusicStream(sounds.wood_ambiance);

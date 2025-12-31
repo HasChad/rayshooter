@@ -3,6 +3,12 @@
 #include "assets.hpp"
 #include <raylib.h>
 
+enum class WeaponSlot {
+    Primary,
+    Secondary,
+    Melee,
+};
+
 enum class PrimaryWeapon {
     None,
     Ak47,
@@ -230,15 +236,18 @@ inline Melee baseballbat = {
 
 class Inventory {
   public:
-    int selected = 1;
+    WeaponSlot selected = WeaponSlot::Primary;
     Primary primary = ak47;
     Secondary secondary = glock;
     Melee melee = hand;
     WeaponProp* currentWeapon = &primary.prop;
 
+    void update();
+    void draw();
+
+  private:
     void changeInv();
     void useMedKit();
-    void draw();
 };
 
 inline Inventory inventory;

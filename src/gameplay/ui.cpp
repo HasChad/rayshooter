@@ -25,7 +25,7 @@ void Gameplay::ui() {
     DrawRectangle(xPadding - 20, GetScreenHeight() - 23, textSize + 10, 25, ColorAlpha(BLACK, 0.5));
     DrawText(text, xPadding - 15, GetScreenHeight() - 20, 20, WHITE);
 
-    if (inventory.selected != 3) {
+    if (inventory.selected != WeaponSlot::Melee) {
         text = TextFormat(
             "Ammo: %d / %d", inventory.currentWeapon->magCount, inventory.currentWeapon->ammoCount
         );
