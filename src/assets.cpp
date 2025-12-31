@@ -23,7 +23,7 @@ void loadAssets() {
     sounds.walk_forest = LoadMusicStream("sounds/walk_forest.mp3");
 
     sounds.reload_rifle = LoadSound("sounds/reload_rifle.ogg");
-    sounds.reload_pistol = LoadSound("sounds/reload_pisto.ogg");
+    sounds.reload_pistol = LoadSound("sounds/reload_pistol.ogg");
 
     sounds.ak_shot = LoadSound("sounds/ak_1.ogg");
     sounds.mosin_shot = LoadSound("sounds/mosin_1.ogg");

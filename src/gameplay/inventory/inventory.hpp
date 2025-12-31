@@ -228,7 +228,8 @@ inline Melee baseballbat = {
 
 // --- Inventory ---------------------------------------
 
-struct Inventory {
+class Inventory {
+  public:
     int selected = 1;
     Primary primary = ak47;
     Secondary secondary = glock;

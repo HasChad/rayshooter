@@ -60,8 +60,31 @@ void weaponTimerController() {
     }
 }
 
-void handleShootingSound() { PlaySound(*inventory.primary.assets.shootingSound); }
-void handleReloadingSound() { PlaySound(*inventory.primary.assets.reloadingSound); }
+void handleShootingSound() {
+    switch (inventory.selected) {
+    case 1:
+        PlaySound(*inventory.primary.assets.shootingSound);
+        break;
+    case 2:
+        PlaySound(*inventory.secondary.assets.shootingSound);
+        break;
+    case 3:
+        break;
+    }
+}
+
+void handleReloadingSound() {
+    switch (inventory.selected) {
+    case 1:
+        PlaySound(*inventory.primary.assets.reloadingSound);
+        break;
+    case 2:
+        PlaySound(*inventory.secondary.assets.reloadingSound);
+        break;
+    case 3:
+        break;
+    }
+}
 
 void bulletSpawner() {
     Bullet bullet;

@@ -1,11 +1,11 @@
 #include "gameplay/gameplay.hpp"
 #include "assets.hpp"
 #include "camera.hpp"
-#include "gameplay/inventory/inventory.hpp"
-#include "gameplay/weapon_control.hpp"
 #include "globals.hpp"
+#include "inventory/inventory.hpp"
 #include "player.hpp"
 #include "raymath.h"
+#include "weapon_control.hpp"
 #include <raylib.h>
 
 void Gameplay::controller() {
