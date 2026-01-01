@@ -15,7 +15,6 @@ void loadAssets() {
     textures.baseballbat = LoadTexture("sprites/weapons/baseballbat.png");
 
     textures.drop = LoadTexture("sprites/drop.png");
-    textures.dropItems = LoadTexture("sprites/drop-items.png");
 
     terraTex.ground = LoadTexture("sprites/dirt.png");
 

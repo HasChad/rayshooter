@@ -15,7 +15,6 @@ struct Textures {
     Texture2D knife;
     Texture2D baseballbat;
     Texture2D drop;
-    Texture2D dropItems;
 };
 inline Textures textures;
 

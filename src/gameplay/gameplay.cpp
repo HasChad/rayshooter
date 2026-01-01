@@ -30,19 +30,20 @@ void Gameplay::run() {
         SetMousePosition(GetMousePosition().x, 0);
     if (GetMousePosition().y > GetScreenHeight())
         SetMousePosition(GetMousePosition().x, GetScreenHeight());
+    */
 
-    UpdateMusicStream(sounds.wood_ambiance);
     if (IsKeyPressed(KEY_SPACE)) {
         player.pos = Vector2Zero();
     }
-    */
+
+    UpdateMusicStream(sounds.wood_ambiance);
 
     bulletController();
     weaponTimerController();
 
     player.update();
+    drop.update();
     inventory.update();
     gameCamera.update();
-
-    cursorPos = GetScreenToWorld2D(GetMousePosition(), gameCamera.camera);
+    cursor.update();
 }

@@ -2,7 +2,6 @@
 #include "assets.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/weapon_control.hpp"
-#include "globals.hpp"
 #include <raylib.h>
 #include <raymath.h>
 
@@ -59,7 +58,7 @@ void Player::handleWeapon() {
 }
 
 void Player::draw() const {
-    player.lookLeft = cursorPos.x < player.pos.x ? true : false;
+    player.lookLeft = cursor.pos.x < player.pos.x ? true : false;
 
     int flip = lookLeft ? -1 : 1;
 

@@ -8,64 +8,62 @@
 #include "raylib.h"
 
 void drawTerrain() {
+    float offset = static_cast<float>(terraTex.ground.width) * ROWS / 2;
+
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
             Vector2 texPos = (Vector2){
-                static_cast<float>(j * terraTex.ground.width),
-                static_cast<float>(i * terraTex.ground.height),
+                static_cast<float>(j * terraTex.ground.width - offset),
+                static_cast<float>(i * terraTex.ground.height - offset),
             };
             DrawTextureEx(terraTex.ground, texPos, 0, 1, WHITE);
         }
     }
 }
 
-void Gameplay::draw() {
+void drawSpinner() {
+    Vector2 position = {
+        player.pos.x - (float)textures.reloadSpinner.width / 8 / 2,
+        player.pos.y - 50,
+    };
 
+    int frame = 8 * (inventory.currentWeapon->reloadSpeed - inventory.currentWeapon->reloadTimer) /
+                inventory.currentWeapon->reloadSpeed;
+
+    int nextPos = textures.reloadSpinner.width / 8 * frame;
+    Rectangle frameRec = {
+        static_cast<float>(nextPos),
+        0.0f,
+        (float)textures.reloadSpinner.width / 8,
+        (float)textures.reloadSpinner.height,
+    };
+
+    DrawTextureRec(textures.reloadSpinner, frameRec, position, WHITE);
+}
+
+void Gameplay::draw() {
     BeginMode2D(gameCamera.camera);
 
     drawTerrain();
-    player.draw();
+
+    if (drop.available) {
+        drop.draw();
+    }
 
     for (const auto& bullet : bullets) {
-        float angleDeg = atan2f(bullet.vel.y, bullet.vel.x) * RAD2DEG;
-
-        DrawTextureEx(
-            textures.bullet,
-            {
-                static_cast<float>(bullet.pos.x - textures.bullet.width / 2.0),
-                static_cast<float>(bullet.pos.y - textures.bullet.height / 2.0),
-            },
-            angleDeg,
-            1,
-            WHITE
-        );
+        bullet.draw();
     }
 
     if (player.action == PlayerAction::Reloading) {
-        Vector2 position = {
-            player.pos.x - (float)textures.reloadSpinner.width / 8 / 2,
-            player.pos.y - 50,
-        };
-
-        int frame = 8 *
-                    (inventory.currentWeapon->reloadSpeed - inventory.currentWeapon->reloadTimer) /
-                    inventory.currentWeapon->reloadSpeed;
-
-        int nextPos = textures.reloadSpinner.width / 8 * frame;
-        Rectangle frameRec = {
-            static_cast<float>(nextPos),
-            0.0f,
-            (float)textures.reloadSpinner.width / 8,
-            (float)textures.reloadSpinner.height,
-        };
-
-        DrawTextureRec(textures.reloadSpinner, frameRec, position, WHITE);
+        drawSpinner();
     }
+
+    player.draw();
 
     DrawTexture(
         textures.cursor,
-        cursorPos.x - textures.cursor.width / 2.0,
-        cursorPos.y - textures.cursor.width / 2.0,
+        cursor.pos.x - textures.cursor.width / 2.0,
+        cursor.pos.y - textures.cursor.width / 2.0,
         WHITE
     );
 
