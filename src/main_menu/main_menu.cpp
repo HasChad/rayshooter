@@ -5,8 +5,6 @@
 #include "raygui.h"
 
 void MainMenu::ui() {
-    BeginDrawing();
-
     Vector2 boxSize = { 250, 100 };
     Rectangle boxRec{
         static_cast<float>(GetScreenWidth() / 2.0 - boxSize.x / 2.0),
@@ -34,6 +32,4 @@ void MainMenu::ui() {
     if (GuiButton(quitButton, "Quit")) {
         game.run = false;
     }
-
-    EndDrawing();
 }

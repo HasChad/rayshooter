@@ -26,6 +26,9 @@ int main() {
     PlayMusicStream(sounds.walk_forest);
 
     while (game.run && !WindowShouldClose()) {
+        BeginDrawing();
+        ClearBackground(BLACK);
+
         switch (gameState) {
         case GameState::MAINMENU:
             mainMenu.ui();
@@ -40,6 +43,8 @@ int main() {
             pauseMenu.ui();
             break;
         }
+
+        EndDrawing();
     }
 
     StopMusicStream(sounds.wood_ambiance);

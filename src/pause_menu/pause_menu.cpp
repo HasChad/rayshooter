@@ -4,8 +4,6 @@
 #include "raylib.h"
 
 void PauseMenu::ui() {
-    BeginDrawing();
-
     Vector2 boxSize = { 200, 100 };
     Rectangle boxRec{
         static_cast<float>(GetScreenWidth() / 2.0 - boxSize.x / 2.0),
@@ -35,6 +33,4 @@ void PauseMenu::ui() {
     if (GuiButton(quitButton, "Quit")) {
         game.run = false;
     }
-
-    EndDrawing();
 }

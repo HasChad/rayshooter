@@ -62,8 +62,8 @@ void Gameplay::draw() {
 
     player.draw();
 
-    for (auto& bullet : bullets) {
-        bullet.updatePos();
+    for (auto& hit : hitNum) {
+        hit.draw();
     }
 
     DrawTexture(

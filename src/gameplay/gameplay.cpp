@@ -13,37 +13,31 @@ void Gameplay::controller() {
     }
 
     gameplay.run();
-
-    BeginDrawing();
-    ClearBackground(BLACK);
     gameplay.draw();
-    EndDrawing();
 }
 
 void Gameplay::run() {
-    /*
-    if (GetMousePosition().x < 0)
-        SetMousePosition(0, GetMousePosition().y);
-    if (GetMousePosition().x > GetScreenWidth())
-        SetMousePosition(GetScreenWidth(), GetMousePosition().y);
-    if (GetMousePosition().y < 0)
-        SetMousePosition(GetMousePosition().x, 0);
-    if (GetMousePosition().y > GetScreenHeight())
-        SetMousePosition(GetMousePosition().x, GetScreenHeight());
-    */
-
-    if (IsKeyPressed(KEY_SPACE)) {
-        player.pos = Vector2Zero();
-    }
-
     UpdateMusicStream(sounds.wood_ambiance);
-
-    bulletController();
-    weaponTimerController();
 
     player.update();
 
     drop.update();
+
+    for (auto& bullet : bullets) {
+        bullet.updatePos();
+    }
+
+    for (auto& hit : hitNum) {
+        hit.updateLife();
+    }
+
+    for (int i = hitNum.size() - 1; i >= 0; i--) {
+        if (hitNum[i].lifeTime < 0)
+            hitNum.erase(hitNum.begin() + i);
+    }
+
+    bulletController();
+    weaponTimerController();
 
     inventory.update();
     gameCamera.update();

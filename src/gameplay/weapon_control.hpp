@@ -4,8 +4,25 @@
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
-#include <iostream>
 #include <vector>
+
+class HitNumber {
+  public:
+    Vector2 pos = { 0, 0 };
+    int damage = inventory.currentWeapon->damage;
+    float lifeTime = 1;
+
+    void updateLife() {
+        pos.y -= 5 * GetFrameTime();
+        lifeTime -= GetFrameTime();
+    }
+
+    void draw() const {
+        const char* text = TextFormat("%d", damage);
+        DrawText(text, pos.x, pos.y, 10, WHITE);
+    }
+};
+inline std::vector<HitNumber> hitNum;
 
 class Bullet {
   public:
@@ -14,11 +31,16 @@ class Bullet {
     int damage = inventory.currentWeapon->damage;
     int speed = inventory.currentWeapon->bulletSpeed;
     Vector2 vel = Vector2Normalize(cursor.pos - player.pos);
-    float lifeTime = 3;
+    float lifeTime = 2;
 
     void castRay(Vector2 circleCol) {
         if (CheckCollisionCircleLine(circleCol, 16, oldPos, pos)) {
-            std::cout << "hit\n";
+            HitNumber hit;
+            hit.pos = pos;
+            hit.damage = damage;
+            hitNum.push_back(hit);
+
+            lifeTime = 0;
         };
     }
 
@@ -28,7 +50,7 @@ class Bullet {
         lifeTime -= GetFrameTime();
     }
 
-    void draw() const { DrawLineEx(oldPos, pos, 3, YELLOW); }
+    void draw() const { DrawLineEx(oldPos, pos, 2, YELLOW); }
 };
 inline std::vector<Bullet> bullets;
 
