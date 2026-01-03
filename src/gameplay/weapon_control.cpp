@@ -1,8 +1,8 @@
 #include "gameplay/weapon_control.hpp"
+#include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
-#include "raymath.h"
 
 void weaponShooting() {
     if (inventory.selected == WeaponSlot::Melee) {
@@ -94,8 +94,8 @@ void bulletSpawner() {
 
 void bulletController() {
     for (auto& bullet : bullets) {
-        bullet.pos += bullet.vel * BULLET_SPEED;
-        bullet.lifeTime -= GetFrameTime();
+        bullet.updatePos();
+        bullet.castRay(target.pos);
     }
 
     for (int i = bullets.size() - 1; i >= 0; i--) {

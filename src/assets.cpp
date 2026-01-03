@@ -3,7 +3,6 @@
 
 void loadAssets() {
     textures.player = LoadTexture("sprites/player.png");
-    textures.bullet = LoadTexture("sprites/bullet.png");
     textures.cursor = LoadTexture("sprites/cursor.png");
     textures.reloadSpinner = LoadTexture("sprites/reload-spinner.png");
     textures.ak47 = LoadTexture("sprites/weapons/ak47.png");
@@ -15,6 +14,7 @@ void loadAssets() {
     textures.baseballbat = LoadTexture("sprites/weapons/baseballbat.png");
 
     textures.drop = LoadTexture("sprites/drop.png");
+    textures.target = LoadTexture("sprites/target.png");
 
     terraTex.ground = LoadTexture("sprites/dirt.png");
 

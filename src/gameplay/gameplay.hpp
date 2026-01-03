@@ -74,3 +74,27 @@ class Drop {
     }
 };
 inline Drop drop;
+
+class DummyTarget {
+  public:
+    Vector2 pos = { 0, -100 };
+    bool hit = false;
+
+    void isHit() {
+        if (hit) {
+            // play sound and make contact sprite animation
+        }
+    }
+
+    void draw() {
+        DrawTexture(
+            textures.target,
+            pos.x - static_cast<float>(textures.target.width) / 2,
+            pos.y - static_cast<float>(textures.target.height) / 2,
+            WHITE
+        );
+
+        DrawCircleLinesV(pos, 16, PINK);
+    }
+};
+inline DummyTarget target;

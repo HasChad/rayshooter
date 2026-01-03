@@ -4,7 +4,6 @@
 
 struct Textures {
     Texture2D player;
-    Texture2D bullet;
     Texture2D cursor;
     Texture2D reloadSpinner;
     Texture2D ak47;
@@ -15,6 +14,7 @@ struct Textures {
     Texture2D knife;
     Texture2D baseballbat;
     Texture2D drop;
+    Texture2D target;
 };
 inline Textures textures;
 

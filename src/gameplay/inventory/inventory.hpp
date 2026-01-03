@@ -41,6 +41,8 @@ struct WeaponProp {
     int ammoCount;
     int magCapacity;
     int ammoCapacity;
+    int bulletSpeed;
+    int damage;
     bool isAuto;
     float firerate;
     float fireTimer;
@@ -82,6 +84,8 @@ inline Primary ak47{
             .ammoCount = 120,
             .magCapacity = 30,
             .ammoCapacity = 120,
+            .bulletSpeed = 30,
+            .damage = 40,
             .isAuto = true,
             .firerate = 0.12,
             .fireTimer = 0.0,
@@ -104,6 +108,8 @@ inline Primary mosinNagant{
             .ammoCount = 25,
             .magCapacity = 5,
             .ammoCapacity = 25,
+            .bulletSpeed = 40,
+            .damage = 100,
             .isAuto = false,
             .firerate = 1.0,
             .fireTimer = 0.0,
@@ -128,6 +134,8 @@ inline Secondary glock = {
             .ammoCount = 50,
             .magCapacity = 17,
             .ammoCapacity = 50,
+            .bulletSpeed = 25,
+            .damage = 15,
             .isAuto = true,
             .firerate = 0.1,
             .fireTimer = 0.0,
@@ -150,6 +158,8 @@ inline Secondary fnx = {
             .ammoCount = 30,
             .magCapacity = 10,
             .ammoCapacity = 30,
+            .bulletSpeed = 20,
+            .damage = 25,
             .isAuto = false,
             .firerate = 0.3,
             .fireTimer = 0.0,
@@ -238,7 +248,7 @@ class Inventory {
   public:
     WeaponSlot selected = WeaponSlot::Primary;
     Primary primary = ak47;
-    Secondary secondary = glock;
+    Secondary secondary = fnx;
     Melee melee = hand;
     WeaponProp* currentWeapon = &primary.prop;
 

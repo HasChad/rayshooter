@@ -58,7 +58,13 @@ void Gameplay::draw() {
         drawSpinner();
     }
 
+    target.draw();
+
     player.draw();
+
+    for (auto& bullet : bullets) {
+        bullet.updatePos();
+    }
 
     DrawTexture(
         textures.cursor,

@@ -42,7 +42,9 @@ void Gameplay::run() {
     weaponTimerController();
 
     player.update();
+
     drop.update();
+
     inventory.update();
     gameCamera.update();
     cursor.update();
