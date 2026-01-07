@@ -7,6 +7,29 @@
 #include "player.hpp"
 #include "raylib.h"
 
+void drawTerrain();
+void drawSpinner();
+
+void Gameplay::draw() {
+    BeginMode2D(gameCamera.camera);
+
+    // Game thingies
+    drawTerrain();
+    drop.draw();
+    target.draw();
+    Bullet::drawAll();
+    HitNumber::drawAll();
+    player.draw();
+
+    // UI thingies
+    drawSpinner();
+    cursor.draw();
+
+    EndMode2D();
+    inventory.draw();
+    gameplay.ui();
+}
+
 void drawTerrain() {
     float offset = static_cast<float>(terraTex.ground.width) * ROWS / 2;
 
@@ -22,6 +45,9 @@ void drawTerrain() {
 }
 
 void drawSpinner() {
+    if (player.action != PlayerAction::Reloading)
+        return;
+
     Vector2 position = {
         player.pos.x - (float)textures.reloadSpinner.width / 8 / 2,
         player.pos.y - 50,
@@ -39,36 +65,4 @@ void drawSpinner() {
     };
 
     DrawTextureRec(textures.reloadSpinner, frameRec, position, WHITE);
-}
-
-void Gameplay::draw() {
-    BeginMode2D(gameCamera.camera);
-
-    drawTerrain();
-
-    if (drop.available) {
-        drop.draw();
-    }
-
-    if (player.action == PlayerAction::Reloading) {
-        drawSpinner();
-    }
-
-    target.draw();
-
-    Bullet::drawAll();
-    HitNumber::drawAll();
-
-    player.draw();
-
-    DrawTexture(
-        textures.cursor,
-        cursor.pos.x - textures.cursor.width / 2.0,
-        cursor.pos.y - textures.cursor.width / 2.0,
-        WHITE
-    );
-
-    EndMode2D();
-    inventory.draw();
-    gameplay.ui();
 }

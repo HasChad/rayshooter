@@ -19,14 +19,9 @@ void Gameplay::run() {
     UpdateMusicStream(sounds.wood_ambiance);
 
     player.update();
-
     drop.update();
-
     Bullet::updateAll(target.pos);
     HitNumber::updateAll();
-
-    weaponTimerController();
-
     inventory.update();
     gameCamera.update();
     cursor.update();

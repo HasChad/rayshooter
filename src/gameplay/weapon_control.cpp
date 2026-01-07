@@ -1,84 +1,79 @@
 #include "gameplay/weapon_control.hpp"
-#include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
 
-void weaponShooting() {
-    if (inventory.selected == WeaponSlot::Melee) {
-        // make cqc fight
-    } else {
-        inventory.currentWeapon->magCount--;
-        Bullet::spawn();
-    }
-}
-
-void weaponReloading() {
-    inventory.currentWeapon->reloadTimer -= GetFrameTime();
-
-    if (inventory.currentWeapon->reloadTimer <= 0) {
-        if (inventory.currentWeapon->ammoCount + inventory.currentWeapon->magCount >=
-            inventory.currentWeapon->magCapacity) {
-            inventory.currentWeapon->ammoCount -=
-                (inventory.currentWeapon->magCapacity - inventory.currentWeapon->magCount);
-            inventory.currentWeapon->magCount = inventory.currentWeapon->magCapacity;
-
-        } else {
-            inventory.currentWeapon->magCount += inventory.currentWeapon->ammoCount;
-            inventory.currentWeapon->ammoCount = 0;
-        }
-    }
-}
-
-void weaponTimerController() {
+void Inventory::weaponTimerController() {
     if (player.action == PlayerAction::Shooting) {
-        if (inventory.currentWeapon->fireTimer <= 0) {
-            inventory.currentWeapon->fireTimer = inventory.currentWeapon->firerate;
+        if (currentWeapon->fireTimer == currentWeapon->firerate) {
             weaponShooting();
-
+            handleShootingSound();
+            currentWeapon->fireTimer -= GetFrameTime();
         } else {
-            inventory.currentWeapon->fireTimer -= GetFrameTime();
+            currentWeapon->fireTimer -= GetFrameTime();
 
-            if (inventory.currentWeapon->fireTimer <= 0) {
+            if (currentWeapon->fireTimer <= 0) {
+                currentWeapon->fireTimer = currentWeapon->firerate;
                 player.action = PlayerAction::Ready;
             }
         }
     }
 
     if (player.action == PlayerAction::Reloading) {
-        if (inventory.currentWeapon->reloadTimer <= 0) {
-            inventory.currentWeapon->reloadTimer = inventory.currentWeapon->reloadSpeed;
-
+        if (currentWeapon->reloadTimer == currentWeapon->reloadSpeed) {
+            handleReloadingSound();
+            currentWeapon->reloadTimer -= GetFrameTime();
         } else {
-            inventory.currentWeapon->reloadTimer -= GetFrameTime();
+            currentWeapon->reloadTimer -= GetFrameTime();
 
-            if (inventory.currentWeapon->reloadTimer <= 0) {
+            if (currentWeapon->reloadTimer <= 0) {
                 weaponReloading();
+                currentWeapon->reloadTimer = currentWeapon->reloadSpeed;
                 player.action = PlayerAction::Ready;
             }
         }
     }
 }
 
-void handleShootingSound() {
-    switch (inventory.selected) {
+void Inventory::weaponShooting() {
+    if (selected == WeaponSlot::Melee) {
+        // make cqc fight
+    } else {
+        currentWeapon->magCount--;
+        Bullet::spawn();
+    }
+}
+
+void Inventory::weaponReloading() {
+    if (currentWeapon->ammoCount + currentWeapon->magCount >= currentWeapon->magCapacity) {
+        currentWeapon->ammoCount -= (currentWeapon->magCapacity - currentWeapon->magCount);
+        currentWeapon->magCount = currentWeapon->magCapacity;
+
+    } else {
+        currentWeapon->magCount += currentWeapon->ammoCount;
+        currentWeapon->ammoCount = 0;
+    }
+}
+
+void Inventory::handleShootingSound() {
+    switch (selected) {
     case WeaponSlot::Primary:
-        PlaySound(*inventory.primary.assets.shootingSound);
+        PlaySound(*primary.assets.shootingSound);
         break;
     case WeaponSlot::Secondary:
-        PlaySound(*inventory.secondary.assets.shootingSound);
+        PlaySound(*secondary.assets.shootingSound);
         break;
     case WeaponSlot::Melee:
         break;
     }
 }
 
-void handleReloadingSound() {
-    switch (inventory.selected) {
+void Inventory::handleReloadingSound() {
+    switch (selected) {
     case WeaponSlot::Primary:
-        PlaySound(*inventory.primary.assets.reloadingSound);
+        PlaySound(*primary.assets.reloadingSound);
         break;
     case WeaponSlot::Secondary:
-        PlaySound(*inventory.secondary.assets.reloadingSound);
+        PlaySound(*secondary.assets.reloadingSound);
         break;
     case WeaponSlot::Melee:
         break;

@@ -6,6 +6,7 @@
 void Inventory::update() {
     changeInv();
     useMedKit();
+    weaponTimerController();
 }
 
 void Inventory::changeInv() {

@@ -106,10 +106,3 @@ inline void Bullet::drawAll() {
         bullet.draw();
     }
 }
-
-void handleShootingSound();
-void handleReloadingSound();
-
-void weaponShooting();
-void weaponReloading();
-void weaponTimerController();

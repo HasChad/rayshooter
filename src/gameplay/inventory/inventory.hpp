@@ -88,9 +88,9 @@ inline Primary ak47{
             .damage = 40,
             .isAuto = true,
             .firerate = 0.12,
-            .fireTimer = 0.0,
+            .fireTimer = 0.12,
             .reloadSpeed = 2.0,
-            .reloadTimer = 0.0,
+            .reloadTimer = 2.0,
         },
     .assets =
         WeaponAssets{
@@ -112,9 +112,9 @@ inline Primary mosinNagant{
             .damage = 100,
             .isAuto = false,
             .firerate = 1.0,
-            .fireTimer = 0.0,
+            .fireTimer = 1.0,
             .reloadSpeed = 3.0,
-            .reloadTimer = 0.0,
+            .reloadTimer = 3.0,
         },
     .assets =
         WeaponAssets{
@@ -138,9 +138,9 @@ inline Secondary glock = {
             .damage = 15,
             .isAuto = true,
             .firerate = 0.1,
-            .fireTimer = 0.0,
+            .fireTimer = 0.1,
             .reloadSpeed = 1.2,
-            .reloadTimer = 0.0,
+            .reloadTimer = 1.2,
         },
     .assets =
         WeaponAssets{
@@ -162,9 +162,9 @@ inline Secondary fnx = {
             .damage = 25,
             .isAuto = false,
             .firerate = 0.3,
-            .fireTimer = 0.0,
+            .fireTimer = 0.3,
             .reloadSpeed = 1.5,
-            .reloadTimer = 0.0,
+            .reloadTimer = 1.5,
         },
     .assets =
         WeaponAssets{
@@ -186,9 +186,9 @@ inline Melee hand = {
             .ammoCapacity = 1,
             .isAuto = false,
             .firerate = 1,
-            .fireTimer = 0,
+            .fireTimer = 1,
             .reloadSpeed = 1,
-            .reloadTimer = 0,
+            .reloadTimer = 1,
         },
     .assets =
         WeaponAssets{
@@ -208,9 +208,9 @@ inline Melee knife = {
             .ammoCapacity = 1,
             .isAuto = false,
             .firerate = 1,
-            .fireTimer = 0,
+            .fireTimer = 1,
             .reloadSpeed = 1,
-            .reloadTimer = 0,
+            .reloadTimer = 1,
         },
     .assets =
         WeaponAssets{
@@ -230,9 +230,9 @@ inline Melee baseballbat = {
             .ammoCapacity = 1,
             .isAuto = false,
             .firerate = 1,
-            .fireTimer = 0,
+            .fireTimer = 1,
             .reloadSpeed = 1,
-            .reloadTimer = 0,
+            .reloadTimer = 1,
         },
     .assets =
         WeaponAssets{
@@ -252,12 +252,18 @@ class Inventory {
     Melee melee = hand;
     WeaponProp* currentWeapon = &primary.prop;
 
+    void weaponTimerController();
     void update();
     void draw();
 
   private:
     void changeInv();
     void useMedKit();
+
+    void weaponShooting();
+    void weaponReloading();
+    void handleShootingSound();
+    void handleReloadingSound();
 };
 
 inline Inventory inventory;

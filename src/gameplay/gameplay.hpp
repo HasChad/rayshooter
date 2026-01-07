@@ -21,6 +21,15 @@ class Cursor {
     Vector2 pos = GetScreenToWorld2D(GetMousePosition(), gameCamera.camera);
 
     void update() { pos = GetScreenToWorld2D(GetMousePosition(), gameCamera.camera); }
+
+    void draw() {
+        DrawTexture(
+            textures.cursor,
+            pos.x - textures.cursor.width / 2.0,
+            pos.y - textures.cursor.width / 2.0,
+            WHITE
+        );
+    }
 };
 inline Cursor cursor;
 
@@ -53,6 +62,9 @@ class Drop {
     }
 
     void draw() {
+        if (!available)
+            return;
+
         float frame = canInteract ? textures.drop.width / 2 : 0;
 
         Rectangle frameRec = {

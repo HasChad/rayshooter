@@ -1,7 +1,7 @@
 #include "player.hpp"
 #include "assets.hpp"
+#include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
-#include "gameplay/weapon_control.hpp"
 #include <raylib.h>
 #include <raymath.h>
 
@@ -48,12 +48,10 @@ bool canReload() {
 void Player::handleWeapon() {
     if (canShoot() && player.action == PlayerAction::Ready) {
         player.action = PlayerAction::Shooting;
-        handleShootingSound();
     }
 
     if (canReload() && player.action == PlayerAction::Ready) {
         player.action = PlayerAction::Reloading;
-        handleReloadingSound();
     }
 }
 
