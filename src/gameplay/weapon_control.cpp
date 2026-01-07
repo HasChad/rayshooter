@@ -1,5 +1,4 @@
 #include "gameplay/weapon_control.hpp"
-#include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
@@ -9,7 +8,7 @@ void weaponShooting() {
         // make cqc fight
     } else {
         inventory.currentWeapon->magCount--;
-        bulletSpawner();
+        Bullet::spawn();
     }
 }
 
@@ -83,23 +82,5 @@ void handleReloadingSound() {
         break;
     case WeaponSlot::Melee:
         break;
-    }
-}
-
-void bulletSpawner() {
-    Bullet bullet;
-
-    bullets.push_back(bullet);
-}
-
-void bulletController() {
-    for (auto& bullet : bullets) {
-        bullet.updatePos();
-        bullet.castRay(target.pos);
-    }
-
-    for (int i = bullets.size() - 1; i >= 0; i--) {
-        if (bullets[i].lifeTime < 0)
-            bullets.erase(bullets.begin() + i);
     }
 }

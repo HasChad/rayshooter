@@ -50,21 +50,16 @@ void Gameplay::draw() {
         drop.draw();
     }
 
-    for (const auto& bullet : bullets) {
-        bullet.draw();
-    }
-
     if (player.action == PlayerAction::Reloading) {
         drawSpinner();
     }
 
     target.draw();
 
-    player.draw();
+    Bullet::drawAll();
+    HitNumber::drawAll();
 
-    for (auto& hit : hitNum) {
-        hit.draw();
-    }
+    player.draw();
 
     DrawTexture(
         textures.cursor,

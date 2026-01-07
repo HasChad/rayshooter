@@ -1,4 +1,3 @@
-#include "gameplay/gameplay.hpp"
 #include "camera.hpp"
 #include "globals.hpp"
 #include "inventory/inventory.hpp"
@@ -23,20 +22,9 @@ void Gameplay::run() {
 
     drop.update();
 
-    for (auto& bullet : bullets) {
-        bullet.updatePos();
-    }
+    Bullet::updateAll(target.pos);
+    HitNumber::updateAll();
 
-    for (auto& hit : hitNum) {
-        hit.updateLife();
-    }
-
-    for (int i = hitNum.size() - 1; i >= 0; i--) {
-        if (hitNum[i].lifeTime < 0)
-            hitNum.erase(hitNum.begin() + i);
-    }
-
-    bulletController();
     weaponTimerController();
 
     inventory.update();
