@@ -30,4 +30,5 @@ void loadAssets() {
     sounds.fnx_shot = LoadSound("sounds/fnx_1.ogg");
 
     sounds.open_drop = LoadSound("sounds/open_drop.ogg");
+    sounds.metal_impact = LoadSound("sounds/metal_impact.ogg");
 }

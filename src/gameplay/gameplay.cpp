@@ -1,3 +1,4 @@
+#include "gameplay/gameplay.hpp"
 #include "camera.hpp"
 #include "globals.hpp"
 #include "inventory/inventory.hpp"
@@ -19,10 +20,11 @@ void Gameplay::run() {
     UpdateMusicStream(sounds.wood_ambiance);
 
     player.update();
-    drop.update();
-    Bullet::updateAll(target.pos);
-    HitNumber::updateAll();
-    inventory.update();
     gameCamera.update();
     cursor.update();
+    drop.update();
+    Bullet::updateAll(targets);
+    DummyTarget::updateAll();
+    HitNumber::updateAll();
+    inventory.update();
 }

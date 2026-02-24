@@ -33,6 +33,7 @@ struct Audio {
     Sound glock_shot;
     Sound fnx_shot;
     Sound open_drop;
+    Sound metal_impact;
 };
 inline Audio sounds;
 

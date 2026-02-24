@@ -16,7 +16,7 @@ void Gameplay::draw() {
     // Game thingies
     drawTerrain();
     drop.draw();
-    target.draw();
+    DummyTarget::drawAll();
     Bullet::drawAll();
     HitNumber::drawAll();
     player.draw();

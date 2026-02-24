@@ -6,6 +6,8 @@
 #include "gameplay/player.hpp"
 #include "raylib.h"
 #include "raymath.h"
+#include <iostream>
+#include <vector>
 
 class Gameplay {
   public:
@@ -53,8 +55,8 @@ class Drop {
             if (canInteract) {
                 inventory.primary.prop.ammoCount = inventory.primary.prop.ammoCapacity;
                 inventory.secondary.prop.ammoCount = inventory.secondary.prop.ammoCapacity;
+                PlaySound(sounds.open_drop);
                 available = false;
-                // play sound
             } else {
                 return;
             }
@@ -89,12 +91,14 @@ inline Drop drop;
 
 class DummyTarget {
   public:
-    Vector2 pos = { 0, -100 };
+    Vector2 pos;
+    int collisionRad = 12;
     bool hit = false;
 
     void isHit() {
         if (hit) {
-            // play sound and make contact sprite animation
+            PlaySound(sounds.metal_impact);
+            std::cout << "sex";
         }
     }
 
@@ -106,7 +110,30 @@ class DummyTarget {
             WHITE
         );
 
-        DrawCircleLinesV(pos, 16, PINK);
+        DrawCircleLinesV(pos, collisionRad, WHITE);
     }
+
+    static void drawAll();
+    static void updateAll();
 };
-inline DummyTarget target;
+inline std::vector<DummyTarget> targets = []() {
+    std::vector<DummyTarget> v(5);
+    v[0].pos = { -200, -100 };
+    v[1].pos = { -100, -100 };
+    v[2].pos = { 0, -100 };
+    v[3].pos = { 100, -100 };
+    v[4].pos = { 200, -100 };
+    return v;
+}();
+
+inline void DummyTarget::updateAll() {
+    for (auto& target : targets) {
+        target.isHit();
+    }
+}
+
+inline void DummyTarget::drawAll() {
+    for (auto& target : targets) {
+        target.draw();
+    }
+}

@@ -55,17 +55,20 @@ class Bullet {
     float lifeTime = 2;
     bool hasHit = false;
 
-    void castRay(Vector2 circleCol) {
+    bool castRay(Vector2 circleCol, int collisionRad) {
         if (hasHit)
-            return;
+            return false;
 
-        if (CheckCollisionCircleLine(circleCol, 16, oldPos, pos)) {
+        if (CheckCollisionCircleLine(circleCol, collisionRad, oldPos, pos)) {
             HitNumber hit;
             hit.pos = pos;
             hit.damage = damage;
             hitNum.push_back(hit);
             lifeTime = 0;
             hasHit = true;
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -78,7 +81,7 @@ class Bullet {
     void draw() const { DrawLineEx(oldPos, pos, 2, YELLOW); }
 
     static void spawn();
-    static void updateAll(Vector2 targetPos);
+    static void updateAll(std::vector<DummyTarget>& targets);
     static void drawAll();
 };
 
@@ -89,10 +92,13 @@ inline void Bullet::spawn() {
     bullets.push_back(bullet);
 }
 
-inline void Bullet::updateAll(Vector2 targetPos) {
+inline void Bullet::updateAll(std::vector<DummyTarget>& targets) {
     for (auto& bullet : bullets) {
         bullet.updatePos();
-        bullet.castRay(targetPos);
+
+        for (auto& target : targets) {
+            target.hit = bullet.castRay(target.pos, target.collisionRad);
+        }
     }
 
     for (int i = bullets.size() - 1; i >= 0; i--) {
