@@ -39,9 +39,9 @@ bool canShoot() {
 bool canReload() {
     return (
         (IsKeyPressed(KEY_R) &&
-         inventory.currentWeapon->magCount < inventory.currentWeapon->magCapacity &&
-         inventory.currentWeapon->ammoCount > 0) ||
-        inventory.currentWeapon->magCount == 0
+             inventory.currentWeapon->magCount < inventory.currentWeapon->magCapacity ||
+         inventory.currentWeapon->magCount == 0) &&
+        inventory.currentWeapon->ammoCount > 0
     );
 }
 

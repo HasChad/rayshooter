@@ -4,6 +4,7 @@
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
+#include <cstdlib>
 #include <vector>
 
 class HitNumber {
@@ -61,7 +62,7 @@ class Bullet {
 
         if (CheckCollisionCircleLine(circleCol, collisionRad, oldPos, pos)) {
             HitNumber hit;
-            hit.pos = pos;
+            hit.pos = { pos.x + rand() % 11, pos.y };
             hit.damage = damage;
             hitNum.push_back(hit);
             lifeTime = 0;
