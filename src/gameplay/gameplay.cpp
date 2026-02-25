@@ -1,5 +1,6 @@
 #include "gameplay/gameplay.hpp"
 #include "camera.hpp"
+#include "gameplay/draw.hpp"
 #include "globals.hpp"
 #include "inventory/inventory.hpp"
 #include "player.hpp"
@@ -26,5 +27,6 @@ void Gameplay::run() {
     Bullet::updateAll(targets);
     DummyTarget::updateAll();
     HitNumber::updateAll();
+    ParticleEffect::updateAll();
     inventory.update();
 }

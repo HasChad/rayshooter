@@ -67,6 +67,15 @@ class Bullet {
             hitNum.push_back(hit);
             lifeTime = 0;
             hasHit = true;
+
+            ParticleEffect picle = {
+                .pos = hit.pos,
+                .texture = textures.particle_metal_hit,
+                .lifeTime = 0.1,
+            };
+
+            particles.push_back(picle);
+
             return true;
         } else {
             return false;

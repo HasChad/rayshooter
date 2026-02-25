@@ -15,6 +15,7 @@ struct Textures {
     Texture2D baseballbat;
     Texture2D drop;
     Texture2D target;
+    Texture2D particle_metal_hit;
 };
 inline Textures textures;
 

@@ -1,3 +1,4 @@
+#include "gameplay/draw.hpp"
 #include "assets.hpp"
 #include "gameplay/camera.hpp"
 #include "gameplay/gameplay.hpp"
@@ -19,6 +20,7 @@ void Gameplay::draw() {
     DummyTarget::drawAll();
     Bullet::drawAll();
     HitNumber::drawAll();
+    ParticleEffect::drawAll();
     player.draw();
 
     // UI thingies

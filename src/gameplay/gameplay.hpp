@@ -2,6 +2,7 @@
 
 #include "assets.hpp"
 #include "gameplay/camera.hpp"
+#include "gameplay/draw.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
@@ -98,7 +99,6 @@ class DummyTarget {
     void isHit() {
         if (hit) {
             PlaySound(sounds.metal_impact);
-            std::cout << "sex";
         }
     }
 
@@ -109,8 +109,6 @@ class DummyTarget {
             pos.y - static_cast<float>(textures.target.height) / 2,
             WHITE
         );
-
-        DrawCircleLinesV(pos, collisionRad, WHITE);
     }
 
     static void drawAll();

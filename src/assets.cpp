@@ -16,6 +16,8 @@ void loadAssets() {
     textures.drop = LoadTexture("sprites/drop.png");
     textures.target = LoadTexture("sprites/target.png");
 
+    textures.particle_metal_hit = LoadTexture("sprites/metal-impact.png");
+
     terraTex.ground = LoadTexture("sprites/dirt.png");
 
     sounds.wood_ambiance = LoadMusicStream("sounds/wood_ambiance.mp3");
