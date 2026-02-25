@@ -1,5 +1,6 @@
 #pragma once
 
+#include "gameplay/draw.hpp"
 #include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
@@ -7,7 +8,7 @@
 #include <cstdlib>
 #include <vector>
 
-class HitNumber {
+class DamageNumber {
   public:
     Vector2 pos = { 0, 0 };
     int damage = inventory.currentWeapon->damage;
@@ -27,21 +28,21 @@ class HitNumber {
     static void drawAll();
 };
 
-inline std::vector<HitNumber> hitNum;
+inline std::vector<DamageNumber> damageNumbers;
 
-inline void HitNumber::updateAll() {
-    for (auto& hit : hitNum) {
+inline void DamageNumber::updateAll() {
+    for (auto& hit : damageNumbers) {
         hit.updateLife();
     }
 
-    for (int i = hitNum.size() - 1; i >= 0; i--) {
-        if (hitNum[i].lifeTime < 0)
-            hitNum.erase(hitNum.begin() + i);
+    for (int i = damageNumbers.size() - 1; i >= 0; i--) {
+        if (damageNumbers[i].lifeTime < 0)
+            damageNumbers.erase(damageNumbers.begin() + i);
     }
 }
 
-inline void HitNumber::drawAll() {
-    for (auto& hit : hitNum) {
+inline void DamageNumber::drawAll() {
+    for (auto& hit : damageNumbers) {
         hit.draw();
     }
 }
@@ -61,15 +62,15 @@ class Bullet {
             return false;
 
         if (CheckCollisionCircleLine(circleCol, collisionRad, oldPos, pos)) {
-            HitNumber hit;
-            hit.pos = { pos.x + rand() % 11, pos.y };
-            hit.damage = damage;
-            hitNum.push_back(hit);
+            DamageNumber damageNum;
+            damageNum.pos = { pos.x + rand() % 11, pos.y };
+            damageNum.damage = damage;
+            damageNumbers.push_back(damageNum);
             lifeTime = 0;
             hasHit = true;
 
             ParticleEffect picle = {
-                .pos = hit.pos,
+                .pos = damageNum.pos,
                 .texture = textures.particle_metal_hit,
                 .lifeTime = 0.1,
             };

@@ -19,9 +19,10 @@ void Gameplay::draw() {
     drop.draw();
     DummyTarget::drawAll();
     Bullet::drawAll();
-    HitNumber::drawAll();
-    ParticleEffect::drawAll();
     player.draw();
+
+    ParticleEffect::drawAll();
+    DamageNumber::drawAll();
 
     // UI thingies
     drawSpinner();

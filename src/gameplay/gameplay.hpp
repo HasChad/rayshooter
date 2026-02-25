@@ -2,12 +2,10 @@
 
 #include "assets.hpp"
 #include "gameplay/camera.hpp"
-#include "gameplay/draw.hpp"
 #include "gameplay/inventory/inventory.hpp"
 #include "gameplay/player.hpp"
 #include "raylib.h"
 #include "raymath.h"
-#include <iostream>
 #include <vector>
 
 class Gameplay {

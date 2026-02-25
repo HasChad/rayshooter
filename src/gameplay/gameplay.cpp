@@ -26,7 +26,7 @@ void Gameplay::run() {
     drop.update();
     Bullet::updateAll(targets);
     DummyTarget::updateAll();
-    HitNumber::updateAll();
+    DamageNumber::updateAll();
     ParticleEffect::updateAll();
     inventory.update();
 }
