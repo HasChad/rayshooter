@@ -21,7 +21,8 @@ class DamageNumber {
 
     void draw() const {
         const char* text = TextFormat("%d", damage);
-        DrawText(text, pos.x, pos.y, 10, WHITE);
+        int textSize = MeasureText(text, 10);
+        DrawText(text, pos.x - textSize / 2.0, pos.y - 5, 10, WHITE);
     }
 
     static void updateAll();
@@ -63,14 +64,14 @@ class Bullet {
 
         if (CheckCollisionCircleLine(circleCol, collisionRad, oldPos, pos)) {
             DamageNumber damageNum;
-            damageNum.pos = { pos.x + rand() % 11, pos.y };
+            damageNum.pos = { circleCol.x + rand() % 21 - 10, circleCol.y - collisionRad };
             damageNum.damage = damage;
             damageNumbers.push_back(damageNum);
             lifeTime = 0;
             hasHit = true;
 
             ParticleEffect picle = {
-                .pos = damageNum.pos,
+                .pos = circleCol,
                 .texture = textures.particle_metal_hit,
                 .lifeTime = 0.1,
             };

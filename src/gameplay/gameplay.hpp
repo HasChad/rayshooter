@@ -112,6 +112,7 @@ class DummyTarget {
     static void drawAll();
     static void updateAll();
 };
+
 inline std::vector<DummyTarget> targets = []() {
     std::vector<DummyTarget> v(5);
     v[0].pos = { -200, -100 };
