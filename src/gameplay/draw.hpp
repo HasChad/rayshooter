@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include <vector>
+
 class ParticleEffect {
   public:
     Vector2 pos = { 0, 0 };
