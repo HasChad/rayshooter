@@ -26,7 +26,7 @@ void MainMenu::ui() {
 
     if (GuiButton(playButton, "Play")) {
         HideCursor();
-        gameState = GameState::GAMEPLAY;
+        game.state = GameState::GAMEPLAY;
     }
 
     if (GuiButton(quitButton, "Quit")) {

@@ -26,7 +26,9 @@ inline TerrainTextures terraTex;
 
 struct Audio {
     Music wood_ambiance;
-    Music walk_forest;
+    Music run_1;
+    Music run_2;
+    Music run_3;
     Sound reload_rifle;
     Sound reload_pistol;
     Sound ak_shot;

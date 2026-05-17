@@ -27,7 +27,7 @@ void PauseMenu::ui() {
 
     if (GuiButton(playButton, "Resume") || IsKeyPressed(KEY_ESCAPE)) {
         HideCursor();
-        gameState = GameState::GAMEPLAY;
+        game.state = GameState::GAMEPLAY;
     }
 
     if (GuiButton(quitButton, "Quit")) {

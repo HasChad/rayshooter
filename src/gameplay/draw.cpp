@@ -33,6 +33,9 @@ void Gameplay::draw() {
     gameplay.ui();
 }
 
+constexpr int ROWS = 20;
+constexpr int COLS = 20;
+
 void drawTerrain() {
     float offset = static_cast<float>(terraTex.ground.width) * ROWS / 2;
 

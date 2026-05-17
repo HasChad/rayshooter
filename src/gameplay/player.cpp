@@ -2,6 +2,7 @@
 #include "assets.hpp"
 #include "gameplay/gameplay.hpp"
 #include "gameplay/inventory/inventory.hpp"
+#include <cstdlib>
 #include <raylib.h>
 #include <raymath.h>
 
@@ -22,8 +23,19 @@ void Player::movementInput() {
 }
 
 void Player::playerMove() {
-    if (Vector2Length(vel) > 0)
-        UpdateMusicStream(sounds.walk_forest);
+    if (Vector2Length(vel) > 0) {
+        switch (rand() % 3) {
+        case 0:
+            UpdateMusicStream(sounds.run_1);
+            break;
+        case 1:
+            UpdateMusicStream(sounds.run_2);
+            break;
+        case 2:
+            UpdateMusicStream(sounds.run_3);
+            break;
+        }
+    }
 
     pos += vel;
 }

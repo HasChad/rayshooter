@@ -15,7 +15,7 @@ int main() {
     InitWindow(800, 600, "RayShooter");
     InitAudioDevice();
     SetTargetFPS(60);
-    SetWindowIcon(LoadImage("sprites/icon.png"));
+    SetWindowIcon(LoadImage("assets/icons/icon.png"));
     SetExitKey(0);
 
     loadAssets();
@@ -23,13 +23,12 @@ int main() {
 
     SetMasterVolume(game.volume);
     PlayMusicStream(sounds.wood_ambiance);
-    PlayMusicStream(sounds.walk_forest);
 
     while (game.run && !WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        switch (gameState) {
+        switch (game.state) {
         case GameState::MAINMENU:
             mainMenu.ui();
             break;
@@ -48,7 +47,6 @@ int main() {
     }
 
     StopMusicStream(sounds.wood_ambiance);
-    StopMusicStream(sounds.walk_forest);
     CloseAudioDevice();
     CloseWindow();
 }

@@ -10,7 +10,7 @@
 void Gameplay::controller() {
     if (IsKeyPressed(KEY_ESCAPE)) {
         ShowCursor();
-        gameState = GameState::PAUSE;
+        game.state = GameState::PAUSE;
     }
 
     gameplay.run();
